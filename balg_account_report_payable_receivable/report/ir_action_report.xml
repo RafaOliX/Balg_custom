@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- ========== REPORTE PDF ========== -->
+    <record id="action_account_payable_receivable_report_balg" model="ir.actions.report">
+        <field name="name">Account Payable Receivable BALG</field>
+        <field name="model">account.payable.receivable.wizard.balg</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">balg_account_report_payable_receivable.report_payable_receivable_balg</field>
+        <field name="report_file">balg_account_report_payable_receivable.report_payable_receivable_balg</field>
+        <field name="binding_model_id" eval="False"/>
+        <field name="binding_type">report</field>
+        <!-- 👇 Usa el método _get_report_name del wizard -->
+        <field name="print_report_name">object._get_report_name('pdf')</field>
+    </record>
+
+    <!-- ========== REPORTE EXCEL ========== -->
+    <record id="action_account_payable_receivable_report_xlsx_balg" model="ir.actions.report">
+        <field name="name">Account Payable Receivable xlsx BALG</field>
+        <field name="model">account.payable.receivable.wizard.balg</field>
+        <field name="report_type">xlsx</field>
+        <field name="report_name">balg_account_report_payable_receivable.p_c_xlsx</field>
+        <field name="report_file">balg_account_report_payable_receivable.p_c_xlsx</field>
+        <field name="binding_model_id" eval="False"/>
+        <field name="binding_type">report</field>
+        <!-- 👇 Usa el método _get_report_name del wizard -->
+        <field name="print_report_name">object._get_report_name('xlsx')</field>
+    </record>
+</odoo>

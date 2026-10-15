@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_payable_receivable_document_balg">
+        <t t-call="web.external_layout">
+            <t t-set="o" t-value="o.with_context(lang=lang)"/>
+            <!-- Calculamos total adeudado -->
+            <t t-set="total_adeudado" t-value="0.0"/>
+            <t t-set="total_rectificativas_huerfanas" t-value="0.0"/>
+            <t t-foreach="o._get_sql().items()" t-as="move">
+                <t t-if="move[1].get('tipo') != 'remanente'">
+                    <t t-set="total_adeudado" t-value="total_adeudado + move[1]['total']"/>
+                    <t t-foreach="move[1]['lines']" t-as="line">
+                        <t t-if="line.get('tipo') == 'rectificativa_huerfana'">
+                            <t t-set="total_rectificativas_huerfanas"
+                               t-value="total_rectificativas_huerfanas + abs(line['amount'])"/>
+                        </t>
+                    </t>
+                </t>
+            </t>
+            <t t-set="total_adeudado" t-value="total_adeudado - total_rectificativas_huerfanas"/>
+
+            <!-- ===== DATOS DEL CLIENTE Y TOTAL ADEUDADO (encabezado) ===== -->
+            <div style="margin-bottom: 15px; line-height: 1.5; font-size: 10pt;">
+                <div><strong>Cliente:</strong> <span t-esc="o.partner_id.name"/></div>
+                <div><strong>RIF:</strong> <span t-esc="o.partner_id.vat or ''"/></div>
+                <div t-if="o.partner_id.street"><strong>Dirección:</strong> <span t-esc="o.partner_id.street"/></div>
+                <div t-if="o.partner_id.phone"><strong>Teléfono:</strong> <span t-esc="o.partner_id.phone"/></div>
+                <div t-if="o.partner_id.mobile"><strong>Móvil:</strong> <span t-esc="o.partner_id.mobile"/></div>
+                <div t-if="o.partner_id.email"><strong>Correo:</strong> <span t-esc="o.partner_id.email"/></div>
+                <div>
+                    <strong>Fecha de Emisión:</strong>
+                    <span t-esc="o.emission_date" t-options='{"widget": "date"}'/>
+                </div>
+                <div style="background-color: #FFFF00; padding: 2px 5px; display: inline-block; margin-top: 5px; font-weight: bold;">
+                    Saldo: <span t-esc="total_adeudado" t-options='{"widget": "monetary", "display_currency": o.report_currency_id}'/>
+                </div>
+            </div>
+
+            <!-- ===== TABLAS POR GRUPO DE FACTURA ===== -->
+            <t t-foreach="o._get_sql().items()" t-as="data">
+                <t t-set="counter_move" t-value="data[1]"/>
+                <!-- Cada grupo en su propia tabla para evitar saltos de página dentro del grupo -->
+                <table class="table table-sm table-bordered" style="border-collapse: collapse; font-size: 10pt; page-break-inside: avoid; margin-bottom: 10px;">
+                    <thead style="background-color: #E6E6E6; font-weight: bold; text-align: center;">
+                        <tr>
+                            <th style="text-align: left; padding: 5px;">Fecha</th>
+                            <th style="text-align: left; padding: 5px;">Nro. Ref</th>
+                            <th style="text-align: left; padding: 5px;">Descripción</th>
+                            <th style="text-align: right; padding: 5px;">Monto</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Líneas de detalle -->
+                        <t t-foreach="counter_move['lines']" t-as="line">
+                            <tr>
+                                <td style="padding: 5px; border: 1px solid #ccc;">
+                                    <span t-esc="line['date'] if line['date'] else ''"/>
+                                </td>
+                                <td style="padding: 5px; border: 1px solid #ccc;">
+                                    <span t-esc="line.get('invoice_number_next', '')"/>
+                                </td>
+                                <td style="padding: 5px; border: 1px solid #ccc;">
+                                    <span t-esc="line['line_name']"/>
+                                    <!-- Mostrar counter_move_ref si existe, sino ref -->
+                                    <t t-if="line.get('ref')">
+                                        (<span t-esc="line['ref']"/>)
+                                    </t>
+                                    <t t-elif="line.get('counter_move_ref')">
+                                        (<span t-esc="line['counter_move_ref']"/>)
+                                    </t>
+                                </td>
+                                <td style="padding: 5px; border: 1px solid #ccc; text-align: right;">
+                                    <span t-if="line['amount'] &lt; 0" style="color: red;">
+                                        <span t-esc="line['amount']" 
+                                              t-options='{"widget": "monetary", "display_currency": o.report_currency_id}'/>
+                                    </span>
+                                    <span t-if="line['amount'] >= 0" style="color: black;">
+                                        <span t-esc="line['amount']" 
+                                              t-options='{"widget": "monetary", "display_currency": o.report_currency_id}'/>
+                                    </span>
+                                </td>
+                            </tr>
+                        </t>
+                        <!-- Total de la factura, Crédito o Saldada -->
+                        <t t-if="counter_move['total'] &lt; 0">
+                            <tr style="background-color: #FFE6E6; font-weight: bold; border: 1px solid #ccc;">
+                                <td colspan="3" style="padding: 5px; text-align: right; border: 1px solid #ccc; color: red;">Crédito</td>
+                                <td style="padding: 5px; text-align: right; border: 1px solid #ccc;">
+                                    <span style="color: red;">
+                                        <span t-esc="counter_move['total']" t-options='{"widget": "monetary", "display_currency": o.report_currency_id}'/>
+                                    </span>
+                                </td>
+                            </tr>
+                        </t>
+                        <t t-elif="counter_move['total'] == 0">
+                            <tr style="background-color: #EBEBEB; font-weight: bold; border: 1px solid #ccc;">
+                                <td colspan="3" style="padding: 5px; text-align: right; border: 1px solid #ccc;">Saldada</td>
+                                <td style="padding: 5px; text-align: right; border: 1px solid #ccc;">0,00</td>
+                            </tr>
+                        </t>
+                        <t t-else="">
+                            <tr style="background-color: #FFFFCC; font-weight: bold; border: 1px solid #ccc; page-break-after: avoid;">
+                                <td colspan="3" style="padding: 5px; text-align: right; border: 1px solid #ccc;">Total</td>
+                                <td style="padding: 5px; text-align: right; border: 1px solid #ccc;">
+                                    <span t-esc="counter_move['total']" t-options='{"widget": "monetary", "display_currency": o.report_currency_id}'/>
+                                </td>
+                            </tr>
+                        </t>
+                    </tbody>
+                </table>
+            </t>
+
+            <!-- ===== SALDO FINAL ===== -->
+            <div style="background-color: #FFFF00; padding: 2px 5px; display: table; margin-left: auto; margin-top: 5px; font-weight: bold;">
+                Saldo: <span t-esc="total_adeudado" t-options='{"widget": "monetary", "display_currency": o.report_currency_id}'/>
+            </div>
+        </t>
+    </template>
+
+    <template id="report_payable_receivable_balg">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-set="lang" t-value="o.partner_id.lang"/>
+                <t t-call="balg_account_report_payable_receivable.report_payable_receivable_document_balg" t-lang="lang"/>
+            </t>
+        </t>
+    </template>
+</odoo>

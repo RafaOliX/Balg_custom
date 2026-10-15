@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Copyright (C) 2024 Bryan Gomez, Alejandro Yende, Gabriel Antunez
+    (<Bryan.gomez1311@gmail.com>, <antunezgabrielc32@gmail.com>, <alyendedev@gmail.com>)
+    Licencia: Propietaria. Todos los derechos reservados.
+    Este archivo forma parte de un módulo personalizado para Odoo. -->
+<odoo>
+    <menuitem id="menu_payable_receivable_balg" name="Payable/Receivable BALG" parent="account.menu_finance_reports" sequence="10">
+        <menuitem id="menu_report_payable_receivable_balg" action="action_account_payable_receivable_wizard_balg" sequence="5"/>
+    </menuitem>
+</odoo>

@@ -1,0 +1,191 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* balg_account_report_payable_receivable
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-07-17 12:58+0000\n"
+"PO-Revision-Date: 2026-07-17 12:58+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: balg_account_report_payable_receivable
+#: model:ir.actions.report,print_report_name:balg_account_report_payable_receivable.action_account_payable_receivable_report_balg
+#: model:ir.actions.report,print_report_name:balg_account_report_payable_receivable.action_account_payable_receivable_report_xlsx_balg
+msgid "'%s - %s' % (object.from_date, object.to_date)"
+msgstr ""
+
+#. module: balg_account_report_payable_receivable
+#: model:ir.model,name:balg_account_report_payable_receivable.model_account_payable_receivable_wizard_balg
+msgid "Account Payable Balg Receivable"
+msgstr "Cuentas por Pagar y por Cobrar"
+
+#. module: balg_account_report_payable_receivable
+#: model:ir.actions.act_window,name:balg_account_report_payable_receivable.action_account_payable_receivable_wizard_balg
+#: model:ir.actions.report,name:balg_account_report_payable_receivable.action_account_payable_receivable_report_balg
+#: model:ir.ui.menu,name:balg_account_report_payable_receivable.menu_report_payable_receivable_balg
+msgid "Account Payable Receivable BALG"
+msgstr "Cuentas por Pagar y por Cobrar"
+
+#. module: balg_account_report_payable_receivable
+#: model:ir.actions.report,name:balg_account_report_payable_receivable.action_account_payable_receivable_report_xlsx_balg
+msgid "Account Payable Receivable xlsx BALG"
+msgstr "Cuentas por Pagar y por Cobrar xlsx"
+
+#. module: balg_account_report_payable_receivable
+#: model:ir.model.fields,field_description:balg_account_report_payable_receivable.field_account_payable_receivable_wizard_balg__account_type
+msgid "Account Type"
+msgstr "Tipo de Cuenta"
+
+#. module: balg_account_report_payable_receivable
+#: model_terms:ir.ui.view,arch_db:balg_account_report_payable_receivable.report_payable_receivable_document_balg
+msgid "Amount in currency"
+msgstr "Monto"
+
+#. module: balg_account_report_payable_receivable
+#: model:ir.model.fields.selection,name:balg_account_report_payable_receivable.selection__account_payable_receivable_wizard_balg__account_type__asset_receivable
+msgid "Asset Receivable"
+msgstr "Activo Cuenta por Cobrar"
+
+#. module: balg_account_report_payable_receivable
+#: model_terms:ir.ui.view,arch_db:balg_account_report_payable_receivable.view_account_payable_receivable_wizard_form
+msgid "Cancel"
+msgstr "Cancelar"
+
+#. module: balg_account_report_payable_receivable
+#: model:ir.model.fields,field_description:balg_account_report_payable_receivable.field_account_payable_receivable_wizard_balg__company_id
+msgid "Company"
+msgstr "Compañía"
+
+#. module: balg_account_report_payable_receivable
+#: model_terms:ir.ui.view,arch_db:balg_account_report_payable_receivable.report_payable_receivable_document_balg
+msgid "Control Number"
+msgstr "Nro. Control"
+
+#. module: balg_account_report_payable_receivable
+#: model:ir.model.fields,field_description:balg_account_report_payable_receivable.field_account_payable_receivable_wizard_balg__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: balg_account_report_payable_receivable
+#: model:ir.model.fields,field_description:balg_account_report_payable_receivable.field_account_payable_receivable_wizard_balg__create_date
+msgid "Created on"
+msgstr "Creado en"
+
+#. module: balg_account_report_payable_receivable
+#: model_terms:ir.ui.view,arch_db:balg_account_report_payable_receivable.report_payable_receivable_document_balg
+msgid "Daily Code"
+msgstr "Codigo de Diario"
+
+#. module: balg_account_report_payable_receivable
+#: model_terms:ir.ui.view,arch_db:balg_account_report_payable_receivable.report_payable_receivable_document_balg
+msgid "Date"
+msgstr "Fecha"
+
+#. module: balg_account_report_payable_receivable
+#: model:ir.model.fields,field_description:balg_account_report_payable_receivable.field_account_payable_receivable_wizard_balg__from_date
+msgid "Date From"
+msgstr "Fecha Desde"
+
+#. module: balg_account_report_payable_receivable
+#: model:ir.model.fields,field_description:balg_account_report_payable_receivable.field_account_payable_receivable_wizard_balg__to_date
+msgid "Date To"
+msgstr "Fecha Hasta"
+
+#. module: balg_account_report_payable_receivable
+#: model:ir.model.fields,field_description:balg_account_report_payable_receivable.field_account_payable_receivable_wizard_balg__display_name
+msgid "Display Name"
+msgstr "Nombre Mostrado"
+
+#. module: balg_account_report_payable_receivable
+#: model:ir.model.fields,field_description:balg_account_report_payable_receivable.field_account_payable_receivable_wizard_balg__id
+msgid "ID"
+msgstr "ID"
+
+#. module: balg_account_report_payable_receivable
+#: model_terms:ir.ui.view,arch_db:balg_account_report_payable_receivable.report_payable_receivable_document_balg
+msgid "Invoice Number"
+msgstr "Nro. Factura"
+
+#. module: balg_account_report_payable_receivable
+#: model_terms:ir.ui.view,arch_db:balg_account_report_payable_receivable.report_payable_receivable_document_balg
+msgid "Label"
+msgstr "Etiqueta"
+
+#. module: balg_account_report_payable_receivable
+#: model:ir.model.fields,field_description:balg_account_report_payable_receivable.field_account_payable_receivable_wizard_balg____last_update
+msgid "Last Modified on"
+msgstr "Última Modificación el"
+
+#. module: balg_account_report_payable_receivable
+#: model:ir.model.fields,field_description:balg_account_report_payable_receivable.field_account_payable_receivable_wizard_balg__write_uid
+msgid "Last Updated by"
+msgstr "Última Actualización por"
+
+#. module: balg_account_report_payable_receivable
+#: model:ir.model.fields,field_description:balg_account_report_payable_receivable.field_account_payable_receivable_wizard_balg__write_date
+msgid "Last Updated on"
+msgstr "Última Actualización el"
+
+#. module: balg_account_report_payable_receivable
+#: model:ir.model.fields.selection,name:balg_account_report_payable_receivable.selection__account_payable_receivable_wizard_balg__account_type__liability_payable
+msgid "Liability Payable"
+msgstr "Pasivos Cuentas por Pagar"
+
+#. module: balg_account_report_payable_receivable
+#: model:ir.model.fields,help:balg_account_report_payable_receivable.field_account_payable_receivable_wizard_balg__report_currency_id
+msgid "Moneda en la que se convertirán los montos del reporte."
+msgstr "Moneda en la que se convertirán los montos del reporte."
+
+#. module: balg_account_report_payable_receivable
+#: model:ir.model.fields,field_description:balg_account_report_payable_receivable.field_account_payable_receivable_wizard_balg__partner_id
+msgid "Partner"
+msgstr "Cliente/Proveedor"
+
+#. module: balg_account_report_payable_receivable
+#. odoo-python
+#: code:addons/balg_account_report_payable_receivable/wizard/account_payable_receivable_wizard.py:0
+#, python-format
+msgid "Payable/Receivable"
+msgstr "Por Pagar/Por Cobrar"
+
+#. module: balg_account_report_payable_receivable
+#: model:ir.ui.menu,name:balg_account_report_payable_receivable.menu_payable_receivable_balg
+msgid "Payable/Receivable BALG"
+msgstr "Por Pagar/Por Cobrar"
+
+#. module: balg_account_report_payable_receivable
+#: model_terms:ir.ui.view,arch_db:balg_account_report_payable_receivable.report_payable_receivable_document_balg
+msgid "Reference"
+msgstr "Referencia"
+
+#. module: balg_account_report_payable_receivable
+#: model:ir.model,name:balg_account_report_payable_receivable.model_report_balg_account_report_payable_receivable_p_c_xlsx_balg
+msgid "Report AR-CV"
+msgstr "Reporte AR-CV"
+
+#. module: balg_account_report_payable_receivable
+#: model:ir.model.fields,field_description:balg_account_report_payable_receivable.field_account_payable_receivable_wizard_balg__report_currency_id
+msgid "Report Currency"
+msgstr "Moneda de Reporte"
+
+#. module: balg_account_report_payable_receivable
+#: model_terms:ir.ui.view,arch_db:balg_account_report_payable_receivable.view_account_payable_receivable_wizard_form
+msgid "Report PDF"
+msgstr "Reporte PDF"
+
+#. module: balg_account_report_payable_receivable
+#: model_terms:ir.ui.view,arch_db:balg_account_report_payable_receivable.view_account_payable_receivable_wizard_form
+msgid "Report XLSX"
+msgstr "Reporte XLSX"
+
+#. module: balg_account_report_payable_receivable
+#: model_terms:ir.ui.view,arch_db:balg_account_report_payable_receivable.report_payable_receivable_document_balg
+msgid "Total"
+msgstr "Total"

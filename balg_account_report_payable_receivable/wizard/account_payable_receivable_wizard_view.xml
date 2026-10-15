@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+    <record id="view_account_payable_receivable_wizard_form_balg" model="ir.ui.view">
+        <field name="name">account.payable.receivable.wizard.form.balg</field>
+        <field name="model">account.payable.receivable.wizard.balg</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <group id="header_left_group">
+                        <!-- Campo checkbox para mostrar todos los movimientos -->
+                        <field name="show_all_movements"/>
+                        <field name="only_pending"/>
+                        
+                        <!-- Campos de fecha, ocultos si show_all_movements está marcado -->
+                        <field name="from_date" 
+                               required="1" 
+                               attrs="{'invisible': [('show_all_movements', '=', True)]}"/>
+                        <field name="to_date" 
+                               required="1" 
+                               attrs="{'invisible': [('show_all_movements', '=', True)]}"/>
+                        
+                        <field name="partner_id" required="1" options="{'no_create': True, 'no_open': True}"/>
+                        <field name="company_id" readonly="1"/>
+                    </group>
+                    <group id="header_right_group">
+                        <field name="account_type" required="1"/>
+                        <field name="report_currency_id" required="1"/>
+                        <field name="emission_date" required="1"/>
+                    </group>
+                </group>
+                <footer>
+                    <button name="print_report" string="Reporte PDF" type="object" class="btn-primary"/>
+                    <button name="xls_report" string="REPORTE EXCEL" type="object" class="btn-info"/>
+                    <!-- 👇 Nuevo botón de WhatsApp -->
+                    <button name="action_send_whatsapp_estado" string="Enviar por WhatsApp" type="object" class="btn-success" icon="fa-whatsapp"/>
+                    <button string="CANCELAR" class="btn-danger" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_account_payable_receivable_wizard_balg" model="ir.actions.act_window">
+        <field name="name">Account Payable Receivable</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">account.payable.receivable.wizard.balg</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+</odoo>
