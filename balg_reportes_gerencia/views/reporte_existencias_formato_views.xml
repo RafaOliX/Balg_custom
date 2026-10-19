@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_existencias_formato_search" model="ir.ui.view">
+        <field name="name">existencias.formato.search</field>
+        <field name="model">balg_reportes_gerencia.reporte_existencias_formato</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="x_producto" string="Producto"/>
+                <field name="x_formato" string="Formato"/>
+                <field name="x_variante_referencia" string="Referencia"/>
+                <field name="x_calidad" string="Calidad"/>
+                <field name="x_tono" string="Tono"/>
+                <group expand="0" string="Agrupar por">
+                    <filter string="Producto" name="group_producto" context="{'group_by': 'x_producto'}"/>
+                    <filter string="Formato" name="group_formato" context="{'group_by': 'x_formato'}"/>
+                    <filter string="Calidad" name="group_calidad" context="{'group_by': 'x_calidad'}"/>
+                    <filter string="Tono" name="group_tono" context="{'group_by': 'x_tono'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_reporte_existencias_formato" model="ir.actions.act_window">
+        <field name="name">Existencias por Formato</field>
+        <field name="res_model">balg_reportes_gerencia.reporte_existencias_formato</field>
+        <field name="view_mode">pivot,graph,tree</field>
+        <field name="search_view_id" ref="view_existencias_formato_search"/>
+        <field name="context">{'dashboard_card': True}</field>
+    </record>
+</odoo>

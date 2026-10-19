@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_cuentas_por_clientes_search" model="ir.ui.view">
+        <field name="name">cuentas.por.clientes.search</field>
+        <field name="model">balg_reportes_gerencia.reporte_cuentas_por_clientes</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="x_fecha_documento" string="Fecha Documento" widget="date"/>
+                <filter name="filter_this_month" string="Este mes" date="x_fecha_documento"/>
+                <field name="x_cliente" string="Cliente"/>
+                <field name="x_codigo_cuenta" string="Cuenta"/>
+                <field name="x_tipo_cuenta" string="Tipo Cuenta"/>
+                <group expand="0" string="Agrupar por">
+                    <filter string="Cliente" name="group_cliente" context="{'group_by': 'x_cliente'}"/>
+                    <filter string="Fecha Documento (mes)" name="group_fecha" context="{'group_by': 'x_fecha_documento:month'}"/>
+                    <filter string="Cuenta" name="group_cuenta" context="{'group_by': 'x_codigo_cuenta'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_reporte_cuentas_por_clientes" model="ir.actions.act_window">
+        <field name="name">Cuentas por Clientes</field>
+        <field name="res_model">balg_reportes_gerencia.reporte_cuentas_por_clientes</field>
+        <field name="view_mode">pivot,graph,tree</field>
+        <field name="search_view_id" ref="view_cuentas_por_clientes_search"/>
+        <field name="context">{'dashboard_card': True}</field>
+    </record>
+</odoo>

@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_res_partner_credit_limit_user,res.partner.credit_limit.user,model_res_partner_credit_limit,base.group_user,1,1,1,1
+access_res_partner_credit_limit_sale_manager,res.partner.credit_limit.sale_manager,model_res_partner_credit_limit,sales_team.group_sale_manager,1,1,1,1
+access_res_partner_credit_limit_account,res.partner.credit_limit.account,model_res_partner_credit_limit,account.group_account_invoice,1,1,1,1

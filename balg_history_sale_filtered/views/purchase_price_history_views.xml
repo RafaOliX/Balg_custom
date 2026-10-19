@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_purchase_price_history_balg_tree" model="ir.ui.view">
+        <field name="name">purchase.price.history.balg.tree</field>
+        <field name="model">purchase.price.history.balg</field>
+        <field name="arch" type="xml">
+            <tree expand="1" create="0" delete="0" edit="0" default_order="purchase_order_date desc">
+                <field name="name" invisible="1"/>
+                <field name="currency_id" invisible="1"/>
+                <field name="product_id"/>
+                <field name="partner_id"/>
+                <field name="invoice_number_next"/>
+                <field name="invoice_number_control"/>
+                <field name="company_id" string="Compañia"/>
+                <field name="purchase_order_date"/>
+                <field name="user_id"/>
+                <field name="product_uom_qty" sum="Total Cantidad"/>
+                <field name="product_uom"/>
+                <field name="unit_price" sum="Total Precio"/>
+                <field name="price_unit_rate" sum="Total Precio Cambio"/>
+                <field name="total_price" sum="Total Total"/>
+                <field name="total_price_rate" sum="Total Total Cambio"/>
+                <field name="price_average" sum="Total P/P"/>
+                <field name="price_average_rate" sum="Total P/P Cambio"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_purchase_price_history_balg" model="ir.actions.act_window">
+        <field name="name">Historial de precio para compras</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">purchase.price.history.balg</field>
+        <field name="view_mode">tree</field>
+        <field name="domain">[('company_id','in', allowed_company_ids)]</field>
+    </record>
+</odoo>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="sale_price_history_balg_company_rule" model="ir.rule">
+        <field name="name">Sale Price History: Multi-Company</field>
+        <field name="model_id" ref="model_sale_price_history_balg"/>
+        <field name="global" eval="True"/>
+        <field name="domain_force">[('company_id', 'in', allowed_company_ids)]</field>
+    </record>
+</odoo>

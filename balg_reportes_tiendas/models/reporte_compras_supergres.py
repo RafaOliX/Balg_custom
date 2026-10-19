@@ -1,0 +1,60 @@
+# -*- coding: utf-8 -*-
+from odoo import fields, models, tools
+
+class ReporteComprasSupergres(models.Model):
+    _name = 'balg_reportes_tiendas.compras_supergres'
+    _description = 'Compras SUPERGRES'
+    _auto = False
+    _rec_name = 'x_producto'
+
+    id = fields.Integer(string="ID", readonly=True)  # Debe existir
+    x_compania = fields.Char(string="Compañía", readonly=True)
+    x_company_id = fields.Integer(string="ID Compañía", readonly=True)
+    x_proveedor = fields.Char(string="Proveedor", readonly=True)
+    x_estado = fields.Char(string="Estado", readonly=True)
+    x_ciudad = fields.Char(string="Ciudad", readonly=True)
+    x_fecha_factura = fields.Date(string="Fecha Factura", readonly=True)
+    x_numero_factura = fields.Char(string="Número Factura", readonly=True)
+    x_producto = fields.Char(string="Producto", readonly=True)
+    x_variante_referencia = fields.Char(string="Referencia Variante", readonly=True)
+    x_unidad_medida = fields.Char(string="Unidad de Medida", readonly=True)
+    x_categoria = fields.Char(string="Categoría", readonly=True)
+    x_cantidad_facturada = fields.Float(string="Cantidad Facturada", readonly=True)
+    x_subtotal = fields.Float(string="Subtotal (BS)", readonly=True)
+    x_subtotal_us = fields.Float(string="Subtotal (USD)", readonly=True)  
+
+    def init(self):
+        tools.drop_view_if_exists(self.env.cr, self._table)
+        self.env.cr.execute(f"""
+            CREATE VIEW balg_reportes_tiendas_compras_supergres AS (
+                SELECT
+                    ROW_NUMBER() OVER (ORDER BY aml.id) AS id,
+                    rc.name::varchar AS x_compania,
+                    aml.company_id AS x_company_id,
+                    p.name::varchar AS x_proveedor,
+                    rcs.name::varchar AS x_estado,
+                    p.city::varchar AS x_ciudad,
+                    am.invoice_date AS x_fecha_factura,
+                    COALESCE(am.ref, am.name)::varchar AS x_numero_factura,
+                    COALESCE(pt.name->>'es_VE', pt.name->>'en_US', pt.name->>'es_ES')::varchar AS x_producto,
+                    pp.default_code::varchar AS x_variante_referencia,
+                    COALESCE(uom.name->>'es_VE', uom.name->>'en_US', uom.name->>'es_ES')::varchar AS x_unidad_medida,
+                    pc.name AS x_categoria,
+                    aml.quantity::numeric AS x_cantidad_facturada,
+                    aml.price_subtotal_rate::numeric AS x_subtotal,
+                    aml.price_subtotal::numeric AS x_subtotal_us
+                FROM account_move_line aml
+                JOIN account_move am ON aml.move_id = am.id
+                JOIN res_company rc ON am.company_id = rc.id
+                JOIN res_partner p ON am.partner_id = p.id
+                LEFT JOIN res_country_state rcs ON p.state_id = rcs.id
+                JOIN product_product pp ON aml.product_id = pp.id
+                JOIN product_template pt ON pp.product_tmpl_id = pt.id
+                LEFT JOIN product_category pc ON pt.categ_id = pc.id
+                LEFT JOIN uom_uom uom ON aml.product_uom_id = uom.id
+                WHERE am.move_type = 'in_invoice'
+                  AND am.state = 'posted'
+                  AND am.company_id = 3
+                  AND aml.display_type = 'product'
+            )
+        """)

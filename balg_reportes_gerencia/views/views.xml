@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- ============================================================ -->
+    <!-- 1. PRODUCCIÓN %                                               -->
+    <!-- ============================================================ -->
+    <record id="view_produccion_porcentaje_search" model="ir.ui.view">
+        <field name="name">produccion.porcentaje.search</field>
+        <field name="model">balg_reportes_gerencia.reporte_produccion_porcentaje</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="x_fecha_movimiento" string="Fecha Movimiento" widget="date"/>
+                <filter name="filter_this_month" string="Fecha de Movimiento" date="x_fecha_movimiento"/>
+                <field name="x_producto" string="Producto"/>
+                <group expand="0" string="Agrupar por">
+                    <filter string="Fecha Movimiento" name="group_month" context="{'group_by': 'x_fecha_movimiento:month'}"/>
+                    <filter string="Producto" name="group_product" context="{'group_by': 'x_producto'}"/>
+                    <filter string="Turno" name="group_turno" context="{'group_by': 'x_turno'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_reporte_produccion_porcentaje" model="ir.actions.act_window">
+        <field name="name">Porcentaje de Producción</field>
+        <field name="res_model">balg_reportes_gerencia.reporte_produccion_porcentaje</field>
+        <field name="view_mode">pivot,graph,tree</field>
+        <field name="search_view_id" ref="view_produccion_porcentaje_search"/>
+        <field name="context">{'dashboard_card': True}</field>
+    </record>
+
+    <!-- ============================================================ -->
+    <!-- 2. PRECIO PROMEDIO                                            -->
+    <!-- ============================================================ -->
+    <record id="action_reporte_precio_promedio" model="ir.actions.act_window">
+        <field name="name">Precio Promedio</field>
+        <field name="res_model">balg_reportes_gerencia.reporte_precio_promedio</field>
+        <field name="view_mode">pivot,graph,tree</field>
+        <field name="context">{'dashboard_card': True}</field>
+    </record>
+
+    <!-- ============================================================ -->
+    <!-- 3. VENTAS POR CLIENTE                                         -->
+    <!-- ============================================================ -->
+    <record id="view_ventas_cliente_search" model="ir.ui.view">
+        <field name="name">ventas.cliente.search</field>
+        <field name="model">balg_reportes_gerencia.reporte_ventas_cliente</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="x_fecha_factura" string="Fecha Factura" widget="date"/>
+                <filter name="filter_today" string="Hoy" date="x_fecha_factura"/>
+                <filter name="filter_this_week" string="Esta semana" date="x_fecha_factura"/>
+                <filter name="filter_this_month" string="Este mes" date="x_fecha_factura"/>
+                <field name="x_cliente" string="Cliente"/>
+                <field name="x_estado" string="Estado"/>
+                <group expand="0" string="Agrupar por">
+                    <filter string="Mes" name="group_month" context="{'group_by': 'x_fecha_factura:month'}"/>
+                    <filter string="Año" name="group_year" context="{'group_by': 'x_fecha_factura:year'}"/>
+                    <filter string="Cliente" name="group_cliente" context="{'group_by': 'x_cliente'}"/>
+                    <filter string="Producto" name="group_producto" context="{'group_by': 'x_producto'}"/>
+                    <filter string="Equipo Ventas" name="group_equipo" context="{'group_by': 'x_equipo_ventas'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_reporte_ventas_cliente" model="ir.actions.act_window">
+        <field name="name">Ventas por Cliente</field>
+        <field name="res_model">balg_reportes_gerencia.reporte_ventas_cliente</field>
+        <field name="view_mode">pivot,graph,tree</field>
+        <field name="search_view_id" ref="view_ventas_cliente_search"/>
+        <field name="context">{'dashboard_card': True}</field>
+    </record>
+
+    <!-- ============================================================ -->
+    <!-- 4. VENTAS POR FORMATO                                         -->
+    <!-- ============================================================ -->
+    <record id="view_ventas_formato_search" model="ir.ui.view">
+        <field name="name">ventas.formato.search</field>
+        <field name="model">balg_reportes_gerencia.reporte_ventas_formato</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="x_fecha_factura" string="Fecha Factura" widget="date"/>
+                <filter name="filter_today" string="Hoy" date="x_fecha_factura"/>
+                <filter name="filter_this_week" string="Esta semana" date="x_fecha_factura"/>
+                <filter name="filter_this_month" string="Este mes" date="x_fecha_factura"/>
+                <field name="x_cliente" string="Cliente"/>
+                <field name="x_formato" string="Formato"/>
+                <field name="x_producto" string="Producto"/>
+                <group expand="0" string="Agrupar por">
+                    <filter string="Mes" name="group_month" context="{'group_by': 'x_fecha_factura:month'}"/>
+                    <filter string="Año" name="group_year" context="{'group_by': 'x_fecha_factura:year'}"/>
+                    <filter string="Formato" name="group_formato" context="{'group_by': 'x_formato'}"/>
+                    <filter string="Cliente" name="group_cliente" context="{'group_by': 'x_cliente'}"/>
+                    <filter string="Producto" name="group_producto" context="{'group_by': 'x_producto'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_reporte_ventas_formato" model="ir.actions.act_window">
+        <field name="name">Ventas por Formato</field>
+        <field name="res_model">balg_reportes_gerencia.reporte_ventas_formato</field>
+        <field name="view_mode">pivot,graph,tree</field>
+        <field name="search_view_id" ref="view_ventas_formato_search"/>
+        <field name="context">{'dashboard_card': True}</field>
+    </record>
+
+    <!-- ============================================================ -->
+    <!-- 5. VENTAS POR SERIE                                           -->
+    <!-- ============================================================ -->
+    <record id="view_ventas_serie_search" model="ir.ui.view">
+        <field name="name">ventas.serie.search</field>
+        <field name="model">balg_reportes_gerencia.reporte_ventas_serie</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="x_fecha_factura" string="Fecha Factura" widget="date"/>
+                <filter name="filter_today" string="Hoy" date="x_fecha_factura"/>
+                <filter name="filter_this_week" string="Esta semana" date="x_fecha_factura"/>
+                <filter name="filter_this_month" string="Este mes" date="x_fecha_factura"/>
+                <field name="x_cliente" string="Cliente"/>
+                <field name="x_serie" string="Serie"/>
+                <field name="x_producto" string="Producto"/>
+                <group expand="0" string="Agrupar por">
+                    <filter string="Mes" name="group_month" context="{'group_by': 'x_fecha_factura:month'}"/>
+                    <filter string="Año" name="group_year" context="{'group_by': 'x_fecha_factura:year'}"/>
+                    <filter string="Serie" name="group_serie" context="{'group_by': 'x_serie'}"/>
+                    <filter string="Cliente" name="group_cliente" context="{'group_by': 'x_cliente'}"/>
+                    <filter string="Producto" name="group_producto" context="{'group_by': 'x_producto'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_reporte_ventas_serie" model="ir.actions.act_window">
+        <field name="name">Ventas por Serie</field>
+        <field name="res_model">balg_reportes_gerencia.reporte_ventas_serie</field>
+        <field name="view_mode">pivot,graph,tree</field>
+        <field name="search_view_id" ref="view_ventas_serie_search"/>
+        <field name="context">{'dashboard_card': True}</field>
+    </record>
+
+    <!-- ============================================================ -->
+    <!-- 6. EXISTENCIAS                                                -->
+    <!-- ============================================================ -->
+    <record id="action_reporte_existencias" model="ir.actions.act_window">
+        <field name="name">Existencias</field>
+        <field name="res_model">balg_reportes_gerencia.reporte_existencias</field>
+        <field name="view_mode">pivot,graph,tree</field>
+        <field name="context">{'dashboard_card': True}</field>
+    </record>
+
+    
+
+
+    
+
+    <!-- ============================================================ -->
+    <!-- 7. DASHBOARD (KANBAN) Y MENÚ PRINCIPAL                       -->
+    <!-- ============================================================ -->
+    <record id="view_dashboard_report_kanban" model="ir.ui.view">
+        <field name="name">dashboard.report.kanban</field>
+        <field name="model">dashboard.report</field>
+        <field name="arch" type="xml">
+            <kanban class="o_dashboard_kanban" name="action_open_report" type="object">
+                <field name="name"/>
+                <field name="description"/>
+                <field name="icon"/>
+                <field name="color"/>
+                <field name="action_id"/>
+                <field name="sequence"/>
+                <field name="active"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_global_click o_dashboard_card"
+                             t-attf-style="border-top: 5px solid #{record.color.raw_value};"
+                             t-attf-class="{'oe_kanban_global_click': record.active.raw_value}">
+                            <div class="o_dashboard_card_icon">
+                                <i t-attf-class="fa #{record.icon.raw_value} fa-4x"
+                                   t-attf-style="color: #{record.color.raw_value};"
+                                   title="Icono"/>
+                            </div>
+                            <div class="o_dashboard_card_content" >
+                                <h4><field name="name"/></h4>
+                                <p><field name="description"/></p>
+            <button name="action_open_report" type="object"                class="btn btn-primary btn-sm">
+                                    Abrir Reporte
+                                </button>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <record id="action_dashboard_report" model="ir.actions.act_window">
+        <field name="name">Reportes Gerencia</field>
+        <field name="res_model">dashboard.report</field>
+        <field name="view_mode">kanban</field>
+        <field name="view_id" ref="view_dashboard_report_kanban"/>
+        <field name="context">{'group_by': False, 'domain': [('active', '=', True)]}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Selecciona el reporte que deseas consultar.
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="menu_gerencia_root"
+              name="Reportes Gerencia"
+              action="action_dashboard_report"
+              sequence="10"
+              web_icon="balg_reportes_gerencia,static/description/icon.png"/>
+
+</odoo>

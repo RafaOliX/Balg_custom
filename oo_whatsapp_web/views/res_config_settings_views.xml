@@ -1,0 +1,31 @@
+<odoo>
+    <record id="res_config_settings_view_form_inherit_whatsapp" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.whatsapp</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="base_setup.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//app[@name='general_settings']" position="inside">
+                <block title="WhatsApp" name="whatsapp_setting_container">
+                    <setting id="sale_message_setting" string="Mensaje para Pedidos de Venta" help="Configure el mensaje que se enviará por WhatsApp Web desde pedidos de venta">
+                        <field name="sale_message" placeholder="Ej: Buen día, #CLIENTE su pedido #ORDEN está listo. Total #MONTO"/>
+                        <div class="text-muted mt8">
+                            Placeholders: #CLIENTE, #ORDEN, #MONTO, #NUMERO
+                        </div>
+                    </setting>
+                    <setting id="invoice_message_setting" string="Mensaje para Facturas" help="Configure el mensaje que se enviará por WhatsApp Web desde facturas">
+                        <field name="invoice_message" placeholder="Ej: Buen día, #CLIENTE su factura #FACTURA está disponible. Total #MONTO"/>
+                        <div class="text-muted mt8">
+                            Placeholders: #CLIENTE, #FACTURA, #MONTO, #NUMERO
+                        </div>
+                    </setting>
+                    <setting id="purchase_message_setting" string="Mensaje para Órdenes de Compra" help="Configure el mensaje que se enviará por WhatsApp Web desde órdenes de compra">
+                        <field name="purchase_message" placeholder="Ej: Buen día, #PROVEEDOR nos comunicamos por este pedido"/>
+                        <div class="text-muted mt8">
+                            Placeholders: #PROVEEDOR, #NUMERO
+                        </div>
+                    </setting>
+                </block>
+            </xpath>
+        </field>
+    </record>
+</odoo>

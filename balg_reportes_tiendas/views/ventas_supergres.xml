@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Vista de búsqueda PRIMERO -->
+    <record id="view_reporte_ventas_supergres_search" model="ir.ui.view">
+        <field name="name">reporte.ventas.supergres.search</field>
+        <field name="model">balg_reportes_tiendas.ventas_supergres</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="x_fecha_factura" string="Fecha Factura" widget="date"/>
+                <filter name="filter_today" string="Hoy" date="x_fecha_factura"/>
+                <filter name="filter_this_month" string="Este mes" date="x_fecha_factura"/>
+                <field name="x_cliente" string="Cliente"/>
+                <field name="x_producto" string="Producto"/>
+                <field name="x_categoria" string="Categoría"/>
+                <group expand="0" string="Agrupar por">
+                    <filter string="Mes" name="group_month" context="{'group_by': 'x_fecha_factura:month'}"/>
+                    <filter string="Cliente" name="group_cliente" context="{'group_by': 'x_cliente'}"/>
+                    <filter string="Producto" name="group_producto" context="{'group_by': 'x_producto'}"/>
+                    <filter string="Categoría" name="group_categoria" context="{'group_by': 'x_categoria'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Acción DESPUÉS -->
+    <record id="action_reporte_ventas_supergres" model="ir.actions.act_window">
+        <field name="name">Ventas SUPERGRES</field>
+        <field name="res_model">balg_reportes_tiendas.ventas_supergres</field>
+        <field name="view_mode">pivot,graph,tree</field>
+        <field name="search_view_id" ref="view_reporte_ventas_supergres_search"/>
+        <field name="context">{'dashboard_card': True}</field>
+    </record>
+
+</odoo>

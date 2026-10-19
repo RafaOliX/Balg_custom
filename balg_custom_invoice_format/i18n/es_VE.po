@@ -1,0 +1,195 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* balg_custom_invoice_format
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-07-30 12:52+0000\n"
+"PO-Revision-Date: 2026-07-30 12:52+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: es_VE\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: balg_custom_invoice_format
+#: model_terms:ir.ui.view,arch_db:balg_custom_invoice_format.custom_invoice_without_footer
+msgid ""
+"<span groups=\"account.group_show_line_subtotals_tax_excluded\">Amount</span>\n"
+"                                            <span groups=\"account.group_show_line_subtotals_tax_included\">Total Price</span>"
+msgstr ""
+"<span groups=\"account.group_show_line_subtotals_tax_excluded\">Monto</span>\n"
+"                                            <span groups=\"account.group_show_line_subtotals_tax_included\">Precio total</span>"
+
+#. module: balg_custom_invoice_format
+#: model_terms:ir.ui.view,arch_db:balg_custom_invoice_format.custom_invoice_without_footer
+msgid "<span>Description</span>"
+msgstr "<span>Descripción</span>"
+
+#. module: balg_custom_invoice_format
+#: model_terms:ir.ui.view,arch_db:balg_custom_invoice_format.custom_invoice_without_footer
+msgid "<span>Disc.%</span>"
+msgstr "<span>Dto. %</span>"
+
+#. module: balg_custom_invoice_format
+#: model_terms:ir.ui.view,arch_db:balg_custom_invoice_format.custom_invoice_without_footer
+msgid "<span>Quantity</span>"
+msgstr "<span>Cantidad</span>"
+
+#. module: balg_custom_invoice_format
+#: model_terms:ir.ui.view,arch_db:balg_custom_invoice_format.custom_invoice_without_footer
+msgid "<span>Taxes</span>"
+msgstr "<span>Impuestos</span>"
+
+#. module: balg_custom_invoice_format
+#: model_terms:ir.ui.view,arch_db:balg_custom_invoice_format.custom_invoice_without_footer
+msgid "<span>Unit Price</span>"
+msgstr "<span>Precio unitario</span>"
+
+#. module: balg_custom_invoice_format
+#: model_terms:ir.ui.view,arch_db:balg_custom_invoice_format.custom_invoice_without_footer
+msgid "<strong class=\"mr16\">Subtotal</strong>"
+msgstr "<strong class=\"mr16\">Subtotal</strong>"
+
+#. module: balg_custom_invoice_format
+#: model_terms:ir.ui.view,arch_db:balg_custom_invoice_format.custom_invoice_without_footer
+msgid ""
+"<strong class=\"text-center\">Scan me with your banking "
+"app.</strong><br/><br/>"
+msgstr ""
+"<strong class=\"text-center\">Escanea con tu aplicación "
+"bancaria.</strong><br/><br/>"
+
+#. module: balg_custom_invoice_format
+#: model_terms:ir.ui.view,arch_db:balg_custom_invoice_format.custom_invoice_without_footer
+msgid "<strong>Credit Note Date:</strong>"
+msgstr "<strong>Fecha de nota de crédito:</strong>"
+
+#. module: balg_custom_invoice_format
+#: model_terms:ir.ui.view,arch_db:balg_custom_invoice_format.custom_invoice_without_footer
+msgid "<strong>Customer Code:</strong>"
+msgstr "<strong>Código de cliente:</strong>"
+
+#. module: balg_custom_invoice_format
+#: model_terms:ir.ui.view,arch_db:balg_custom_invoice_format.custom_invoice_without_footer
+msgid "<strong>Date:</strong>"
+msgstr "<strong>Fecha:</strong>"
+
+#. module: balg_custom_invoice_format
+#: model_terms:ir.ui.view,arch_db:balg_custom_invoice_format.custom_invoice_without_footer
+msgid "<strong>Due Date:</strong>"
+msgstr "<strong>Fecha de vencimiento:</strong>"
+
+#. module: balg_custom_invoice_format
+#: model_terms:ir.ui.view,arch_db:balg_custom_invoice_format.custom_invoice_without_footer
+msgid "<strong>Incoterm: </strong>"
+msgstr "<strong>Incoterm: </strong>"
+
+#. module: balg_custom_invoice_format
+#: model_terms:ir.ui.view,arch_db:balg_custom_invoice_format.custom_invoice_without_footer
+msgid "<strong>Invoice Date:</strong>"
+msgstr "<strong>Fecha:</strong>"
+
+#. module: balg_custom_invoice_format
+#: model_terms:ir.ui.view,arch_db:balg_custom_invoice_format.custom_invoice_without_footer
+msgid "<strong>Receipt Date:</strong>"
+msgstr "<strong>Fecha de recibo:</strong>"
+
+#. module: balg_custom_invoice_format
+#: model_terms:ir.ui.view,arch_db:balg_custom_invoice_format.custom_invoice_without_footer
+msgid "<strong>Reference:</strong>"
+msgstr "<strong>Referencia:</strong>"
+
+#. module: balg_custom_invoice_format
+#: model_terms:ir.ui.view,arch_db:balg_custom_invoice_format.custom_invoice_without_footer
+msgid "<strong>Shipping Address:</strong>"
+msgstr "<strong>Dirección de envío:</strong>"
+
+#. module: balg_custom_invoice_format
+#: model_terms:ir.ui.view,arch_db:balg_custom_invoice_format.custom_invoice_without_footer
+msgid "<strong>Source:</strong>"
+msgstr "<strong>Origen:</strong>"
+
+#. module: balg_custom_invoice_format
+#: model_terms:ir.ui.view,arch_db:balg_custom_invoice_format.custom_invoice_without_footer
+msgid "Amount Due"
+msgstr "Monto adeudado"
+
+#. module: balg_custom_invoice_format
+#: model_terms:ir.ui.view,arch_db:balg_custom_invoice_format.custom_invoice_without_footer
+msgid "Cancelled Invoice"
+msgstr "Cancelada"
+
+#. module: balg_custom_invoice_format
+#: model_terms:ir.ui.view,arch_db:balg_custom_invoice_format.custom_invoice_without_footer
+msgid "Cerámicas"
+msgstr "Cerámicas"
+
+#. module: balg_custom_invoice_format
+#: model_terms:ir.ui.view,arch_db:balg_custom_invoice_format.custom_invoice_without_footer
+msgid "Credit Note"
+msgstr "Nota de crédito"
+
+#. module: balg_custom_invoice_format
+#: model_terms:ir.ui.view,arch_db:balg_custom_invoice_format.custom_invoice_without_footer
+msgid "Draft Invoice"
+msgstr "Borrador"
+
+#. module: balg_custom_invoice_format
+#: model:ir.actions.report,name:balg_custom_invoice_format.action_custom_invoice_without_footer
+msgid "Factura Carente"
+msgstr "Factura Carente"
+
+#. module: balg_custom_invoice_format
+#: model_terms:ir.ui.view,arch_db:balg_custom_invoice_format.custom_invoice_without_footer
+msgid "ICE:"
+msgstr "ICE:"
+
+#. module: balg_custom_invoice_format
+#: model_terms:ir.ui.view,arch_db:balg_custom_invoice_format.custom_invoice_without_footer
+msgid "Invoice"
+msgstr " "
+
+#. module: balg_custom_invoice_format
+#: model_terms:ir.ui.view,arch_db:balg_custom_invoice_format.custom_invoice_without_footer
+msgid "Paid on"
+msgstr "Pagado el"
+
+#. module: balg_custom_invoice_format
+#: model_terms:ir.ui.view,arch_db:balg_custom_invoice_format.custom_invoice_without_footer
+msgid "Sección"
+msgstr "Sección"
+
+#. module: balg_custom_invoice_format
+#: model_terms:ir.ui.view,arch_db:balg_custom_invoice_format.custom_invoice_without_footer
+msgid "Tax 15%"
+msgstr "IVA 15%"
+
+#. module: balg_custom_invoice_format
+#: model_terms:ir.ui.view,arch_db:balg_custom_invoice_format.custom_invoice_without_footer
+msgid "Tax ID"
+msgstr "Identificaccion Fiscal"
+
+#. module: balg_custom_invoice_format
+#: model_terms:ir.ui.view,arch_db:balg_custom_invoice_format.custom_invoice_without_footer
+msgid "Tax ID:"
+msgstr "Identificaccion Fiscal:"
+
+#. module: balg_custom_invoice_format
+#: model_terms:ir.ui.view,arch_db:balg_custom_invoice_format.custom_invoice_without_footer
+msgid "Vendor Bill"
+msgstr "Proveedor"
+
+#. module: balg_custom_invoice_format
+#: model_terms:ir.ui.view,arch_db:balg_custom_invoice_format.custom_invoice_without_footer
+msgid "Vendor Credit Note"
+msgstr "Nota de crédito"
+
+#. module: balg_custom_invoice_format
+#: model:ir.actions.report,print_report_name:balg_custom_invoice_format.action_custom_invoice_without_footer
+msgid "object.name"
+msgstr "object.name"

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem web_icon="balg_history_sale_filtered,static/description/odoo_icon.png" id="history_purchase_and_sale_balg" name="Ventas y Compras" sequence="8">
+        <menuitem id="history_purchase_balg" name="Shopping" action="action_purchase_price_history_balg" sequence="1"/>
+        <menuitem id="history_sale_balg" name="Sales" action="action_sale_price_history" sequence="2"/>
+        <menuitem id="report_purchase_and_sale_balg" name="Reports" sequence="10"/>
+        
+
+    </menuitem>
+</odoo>

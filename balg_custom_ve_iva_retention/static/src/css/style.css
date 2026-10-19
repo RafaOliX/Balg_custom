@@ -1,0 +1,12 @@
+.border-left-right-top-bottom{
+    border-bottom: 1px solid black !important;
+    border-top: 1px solid black !important;
+    border-right: 1px solid black !important;
+    border-left: 1px solid black !important;
+
+th{
+    font-size:12px;
+}
+td{
+    font-size:12px;
+}

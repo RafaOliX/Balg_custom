@@ -1,0 +1,16 @@
+<odoo>
+    <data noupdate="1">
+        <record id="oo_whatsapp_web_config_sale_message" model="ir.config_parameter">
+            <field name="key">oo_whatsapp_web.sale_message</field>
+            <field name="value">Buen día, #CLIENTE su pedido #ORDEN está listo para retirar. Total #MONTO</field>
+        </record>
+        <record id="oo_whatsapp_web_config_invoice_message" model="ir.config_parameter">
+            <field name="key">oo_whatsapp_web.invoice_message</field>
+            <field name="value">Buen día, #CLIENTE. Nro de Referencia: #FACTURA. Saldo pendiente: #MONTO.</field>
+        </record>
+        <record id="oo_whatsapp_web_config_purchase_message" model="ir.config_parameter">
+            <field name="key">oo_whatsapp_web.purchase_message</field>
+            <field name="value">Buen día, #PROVEEDOR nos comunicamos por este pedido que adjuntamos</field>
+        </record>
+    </data>
+</odoo>

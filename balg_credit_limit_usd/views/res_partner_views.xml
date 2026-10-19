@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_partner_form_inherit_credit_limit" model="ir.ui.view">
+        <field name="name">res.partner.form.inherit.credit.limit</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+
+            <!-- Ocultar el campo estándar de Odoo (en Bs) -->
+            <xpath expr="//field[@name='credit_limit']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+
+            <!-- Pestaña con los límites en USD por compañía -->
+            <xpath expr="//notebook" position="inside">
+                <page string="Límite de Crédito (USD)" name="credit_limit_balg">
+                    <field name="credit_limit_ids" nolabel="1">
+                        <tree editable="bottom">
+                            <field name="company_id" groups="base.group_multi_company" optional="show"/>
+                            <field name="use_credit_limit"/>
+                            <field name="credit_limit_usd"/>
+                            <field name="total_receivable_usd" readonly="1"/>
+                            <field name="total_credit_usd" readonly="1"/>
+                            <field name="credit_limit_currency_id" invisible="1"/>
+                        </tree>
+                    </field>
+                </page>
+            </xpath>
+
+        </field>
+    </record>
+</odoo>

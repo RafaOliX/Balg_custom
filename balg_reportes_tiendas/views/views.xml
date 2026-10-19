@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Kanban del dashboard de tiendas -->
+    <record id="view_tiendas_dashboard_report_kanban" model="ir.ui.view">
+        <field name="name">tiendas.dashboard.report.kanban</field>
+        <field name="model">tiendas.dashboard.report</field>
+        <field name="arch" type="xml">
+            <kanban class="o_dashboard_kanban" name="action_open_report" type="object">
+                <field name="name"/>
+                <field name="description"/>
+                <field name="icon"/>
+                <field name="color"/>
+                <field name="action_id"/>
+                <field name="sequence"/>
+                <field name="active"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_global_click o_dashboard_card"
+                             t-attf-style="border-top: 5px solid #{record.color.raw_value};"
+                             t-attf-class="{'oe_kanban_global_click': record.active.raw_value}">
+                            <div class="o_dashboard_card_icon">
+                                <i t-attf-class="fa #{record.icon.raw_value} fa-4x"
+                                   t-attf-style="color: #{record.color.raw_value};"
+                                   title="Icono"/>
+                            </div>
+                            <div class="o_dashboard_card_content">
+                                <h4><field name="name"/></h4>
+                                <p><field name="description"/></p>
+                                <button name="action_open_report" type="object"
+                                        class="btn btn-primary btn-sm">
+                                    Abrir Reporte
+                                </button>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <!-- Acción para abrir el dashboard de tiendas -->
+    <record id="action_tiendas_dashboard_report" model="ir.actions.act_window">
+        <field name="name">Reportes Tiendas</field>
+        <field name="res_model">tiendas.dashboard.report</field>
+        <field name="view_mode">kanban</field>
+        <field name="view_id" ref="view_tiendas_dashboard_report_kanban"/>
+        <field name="context">{'group_by': False, 'domain': [('active', '=', True)]}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Selecciona el reporte de tiendas que deseas consultar.
+            </p>
+        </field>
+    </record>
+
+    <!-- Menú raíz visible SOLO para el grupo Reportes Tiendas -->
+    <menuitem id="menu_tiendas_root"
+              name="Reportes Tiendas"
+              action="action_tiendas_dashboard_report"
+              sequence="20"
+              groups="group_reportes_tiendas"
+              web_icon="balg_reportes_tiendas,static/description/icon.png"/>
+
+</odoo>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_sale_price_history_tree" model="ir.ui.view">
+        <field name="name">sale.price.history.balg.tree</field>
+        <field name="model">sale.price.history.balg</field>
+        <field name="arch" type="xml">
+            <tree expand="1" create="0" delete="0" edit="0" default_order="sale_order_date desc">
+                <field name="product_id"/>
+                <field name="partner_id"/>
+                <field name="invoice_number_next"/>
+                <field name="invoice_number_control"/>
+                <field name="company_id" string="Compañía"/>
+                <field name="sale_order_date"/>
+                <field name="user_id" invisible="1"/>
+                <field name="team_name" string="Equipo de Venta"/>
+                <field name="product_uom_qty" sum="Total Cantidad"/>
+                <field name="product_uom" string="Unidad"/>
+                <field name="unit_price" string="Precio"/>
+                <field name="price_subtotal" sum="Subtotal"/>
+                <field name="amount_total" string="Total" sum="Total"/>
+                <field name="invoice_state" string="Estado"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_sale_price_history_search" model="ir.ui.view">
+        <field name="name">sale.price.history.balg.search</field>
+        <field name="model">sale.price.history.balg</field>
+        <field name="arch" type="xml">
+            <search string="search">
+                <field name="partner_id" string="Cliente"/>
+                <field name="team_name" string="Equipo de Venta"/>
+                <field name="invoice_state" string="Estado"/>
+                <filter string="Cliente" name="partner_id" domain="[]" context="{'group_by': 'partner_id'}"/>
+                <filter string="Fecha de factura" name="sale_order_date" domain="[]" context="{'group_by': 'sale_order_date'}"/>
+                <filter string="Publicadas" name="posted" domain="[('invoice_state','=','posted')]"/>
+                <filter string="Borrador" name="draft" domain="[('invoice_state','=','draft')]"/>
+                <filter string="Canceladas" name="cancel" domain="[('invoice_state','=','cancel')]"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_sale_price_history" model="ir.actions.act_window">
+        <field name="name">Historial de precio para ventas</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">sale.price.history.balg</field>
+        <field name="view_mode">tree</field>
+        <field name="domain">[('company_id', 'in', allowed_company_ids)]</field>
+    </record>
+</odoo>

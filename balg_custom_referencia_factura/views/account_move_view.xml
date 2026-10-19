@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Heredar la vista específica que contiene el campo reason -->
+    <record id="view_move_form_inherit_reason_editable" model="ir.ui.view">
+        <field name="name">account.move.form.inherit.reason.editable</field>
+        <field name="model">account.move</field>
+        <!-- Heredamos de la vista exacta donde está definido el campo reason -->
+        <field name="inherit_id" ref="l10n_ve_account_sequence_number.view_move_sequence_number_form"/>
+        <field name="arch" type="xml">
+            <!-- Reemplazar el campo reason por uno con attrs dinámico -->
+            <xpath expr="//field[@name='reason']" position="replace">
+                <field name="reason" 
+                       attrs="{'readonly': [('state', '!=', 'draft')], 
+                               'invisible': [('move_type', 'in', ('in_invoice', 'entry'))]}"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

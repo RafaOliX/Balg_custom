@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_retention_iva_form_inherit_new_report" model="ir.ui.view">
+        <field name="name">retention.iva.form.inherit.new.report</field>
+        <field name="model">retention.iva</field>
+        <field name="inherit_id" ref="l10n_ve_iva_retention.view_iva_retention_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//header/button[@name='print_report_iva']" position="after">
+                <button name="%(balg_custom_ve_iva_retention.action_iva_retention_report_new)d"
+                        string="COMPROBANTE AJUSTADO IVA"
+                        type="action"
+                        class="oe_highlight"
+                        attrs="{'invisible': ['|', ('iva_type', '=', 'out_iva'), ('move_id', '=', False)]}"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

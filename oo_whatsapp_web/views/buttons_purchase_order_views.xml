@@ -1,0 +1,20 @@
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="oo_whatsapp_web_purchase_order_form_boton">
+            <field name="name">oo.whatsapp.web.purchase.order.form.compra</field>
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="purchase.purchase_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//header//button[@name='button_cancel']" position="after">
+                    <button
+                        name="action_sendwscompra"
+                        type="object"
+                        string="Enviar WhatsApp"
+                        icon="fa-whatsapp"
+                        attrs="{'invisible': [('state', 'not in', ['sent', 'purchase', 'done'])]}"
+                    />
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

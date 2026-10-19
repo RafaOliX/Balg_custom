@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Vista de búsqueda -->
+    <record id="view_reporte_compras_supergres_search" model="ir.ui.view">
+        <field name="name">reporte.compras.supergres.search</field>
+        <field name="model">balg_reportes_tiendas.compras_supergres</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="x_proveedor" string="Proveedor"/>
+                <field name="x_producto" string="Producto"/>
+                <field name="x_categoria" string="Categoría"/>
+                <field name="x_fecha_factura" string="Fecha Factura"/>
+                <group expand="0" string="Agrupar por">
+                    <filter string="Proveedor" name="group_proveedor" context="{'group_by': 'x_proveedor'}"/>
+                    <filter string="Producto" name="group_producto" context="{'group_by': 'x_producto'}"/>
+                    <filter string="Categoría" name="group_categoria" context="{'group_by': 'x_categoria'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Acción -->
+    <record id="action_reporte_compras_supergres" model="ir.actions.act_window">
+        <field name="name">Compras SUPERGRES</field>
+        <field name="res_model">balg_reportes_tiendas.compras_supergres</field>
+        <field name="view_mode">pivot,graph,tree</field>
+        <field name="search_view_id" ref="view_reporte_compras_supergres_search"/>
+        <field name="context">{'dashboard_card': True}</field>
+    </record>
+
+</odoo>

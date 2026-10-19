@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Heredamos la vista del dashboard de facturas de proveedor -->
+        <record id="inherit_invoice_bill_mini_dashboard" model="ir.ui.view">
+            <field name="name">account.move.tree.inherit.residuals</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="l10n_ve_currency_rate.view_in_invoice_bill_mini_dashboard_tree"/>
+            <field name="arch" type="xml">
+                
+                <xpath expr="//field[@name='amount_total_in_currency_signed']" position="replace">
+                    
+                    <field name="amount_total_in_currency_signed" 
+                           string="Total en divisa" 
+                           optional="show" 
+                           modifiers="{}"/>
+                
+                    <!-- Monto residual en moneda ORIGINAL -->
+                    <field name="amount_residual" 
+                           string="Adeudado (Original)" 
+                           widget="monetary" 
+                           optional="show" 
+                           sum="Total Adeudado"
+                           modifiers="{}"/>
+                
+                    <!-- Monto residual CON TASA DE CAMBIO (moneda de empresa) -->
+                    <field name="amount_residual_signed_rate" 
+                           string="Adeudado (Convertido)" 
+                           widget="monetary" 
+                           optional="show" 
+                           sum="Total Adeudado Convertido"
+                           decoration-danger="amount_residual_signed_rate > 0 and payment_state != 'paid'"
+                           modifiers="{}"/>
+                
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

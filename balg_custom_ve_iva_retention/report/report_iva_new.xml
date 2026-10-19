@@ -1,0 +1,523 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_iva_retention_new">
+        <t t-call="web.html_container">
+            <t t-call="web.basic_layout">
+                <style>
+    /* Para textos de dirección y párrafos legales */
+    .address-text {
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        white-space: normal;      /* permite saltos de línea */
+        font-size: 11px;
+        line-height: 1.2;
+        max-width: 100%;
+    }
+    .legal-text {
+        text-align: justify;
+        font-size: 11px;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+    }
+
+    /* Para tablas */
+    .table-report {
+        table-layout: fixed;      /* ancho fijo, no se expande con contenido */
+        width: 100%;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+    }
+    .table-report th,
+    .table-report td {
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        font-size: 10px;          /* reduce un poco la fuente en celdas */
+        padding: 2px;
+        white-space: normal;
+    }
+    .table-report tr {
+        page-break-inside: avoid;  /* evita cortar una fila entre páginas */
+    }
+
+    /* Para secciones que no deben dividirse */
+    .signature-section {
+        page-break-inside: avoid;
+    }
+    .header-section {
+        page-break-inside: avoid;
+    }
+</style>
+                <t t-foreach="docs" t-as="o">
+                     <div class="header">
+                         <div class="container">
+                            <div class="row">
+                                <div class="col-3 mb4">
+                                    <img t-if="o.company_id.logo" t-att-src="image_data_uri(o.company_id.logo)" style="max-height: 100px;" alt="Logo"/>
+                                </div>
+                                <div class="col-9">
+                                    <ul class="list-inline mb4 text-center">
+                                         <li style="font-size:15px;"><p><strong>COMPROBANTE DE RETENCIÓN DEL IMPUESTO AL VALOR AGREGADO</strong></p></li>
+                                         <li style="font-size:12px;">
+                                             <p>
+                                                 DECRETO CON RANGO, VALOR Y FUERZA DE LEY DE REFORMA DE LA LEY DEL IMPUESTO AL VALOR AGREGADO N° 1.434 DEL 17 DE NOVIEMBRE DE 2014
+                                                 ARTICULO 11: " LA ADMINISTRACION TRIBUTARIA PODRA DESIGNAR COMO RESPONSABLE DEL PAGO DEL IMPUESTO, EN CALIDAD DE AGENTES DE RETENCION,
+                                                 A QUIENES POR FUNCIONES PUBLICAS POR RAZON DE SUS ACTIVIDADES PRIVADAS INTERVENGAN EN OPERACIONES CON EL IMPUESTO ESTABLECIDO EN ESTE DECRETO
+                                                 CON RANGO, VALOR Y FUERZA DE LEY. (...) "
+                                             </p>
+                                         </li>
+                                    </ul>
+                                </div>
+                            </div>
+                         </div>
+                     </div>
+                     <div class="page">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-8 text-left">
+                                    <ul class="list-inline mb4">
+                                        <li style="font-size:15px;"><strong>Nro Comprobante:</strong> <span t-field="o.name"/></li>
+                                        <li style="font-size:15px;"><strong>Fecha de Emision:</strong> <span t-field="o.move_date"/></li>
+                                    </ul>
+                                </div>
+                                <div class="col-4 text-right">
+                                    <ul class="list-inline mb4">
+                                        <li style="font-size:15px;"><strong>Período Fiscal: </strong>
+                                            <span t-esc="o.move_date.year"/>-<span t-esc="o.move_date.month"/>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                         <div class="container border border-dark" style="margin-top:15px;">
+                             <div class="row">
+                                 <div class="col-5">
+                                     <ul class="list-inline mb4 text-center">
+                                         <li style="font-size:12px;">
+                                             <strong>NOMBRE O RAZÓN SOCIAL AGENTE DE RETENCION</strong>
+                                             <li><span t-field="o.company_id.name"/></li>
+                                         </li>
+                                     </ul>
+                                 </div>
+                                 <div class="col-2">
+                                     <ul class="list-inline mb4 text-center">
+                                         <li style="font-size:12px;">
+                                             <strong>RIF DEL AGENTE DE RETENCION</strong>
+                                             <li><span t-field="o.company_id.doc_type"/>-<span t-field="o.company_id.vat"/></li>
+                                         </li>
+                                     </ul>
+                                 </div>
+                                 <div class="col-5" style="">
+                                     <ul class="list-inline mb4 text-center">
+                                         <li style="font-size:12px;">
+                                             <strong>DIRECCIÓN FISCAL DEL AGENTE DE RETENCION</strong>
+                                             <li>
+    <span class="address-text">
+        <span t-field="o.company_id.street"/>,
+        <span t-field="o.company_id.street2"/>,
+        <span t-field="o.company_id.state_id.name"/>,
+        <span t-field="o.company_id.city"/>
+    </span>
+</li>
+                                         </li>
+                                     </ul>
+                                 </div>
+                             </div>
+                         </div>
+                         <div class="container border border-dark" style="margin-top:15px;">
+                             <div class="row">
+                                 <div class="col-5">
+                                     <ul class="list-inline mb4 text-center">
+                                         <li style="font-size:12px;">
+                                             <strong>NOMBRE O RAZÓN SOCIAL DEL SUJETO RETENIDO</strong>
+                                             <li><span t-field="o.partner_id.name"/></li>
+                                         </li>
+                                     </ul>
+                                 </div>
+                                 <div class="col-2">
+                                     <ul class="list-inline mb4 text-center">
+                                         <li style="font-size:12px;">
+                                             <strong>RIF DEL SUJETO RETENIDO</strong>
+                                             <li><span t-field="o.partner_id.doc_type"/>-<span t-field="o.partner_id.vat"/></li>
+                                         </li>
+                                     </ul>
+                                 </div>
+                                 <div class="col-5" style="">
+                                     <ul class="list-inline mb4 text-center">
+                                         <li style="font-size:12px;">
+                                             <strong>DIRECCIÓN FISCAL DEL SUJETO RETENIDO</strong>
+                                             <li><span t-field="o.partner_id.street"/>,
+                                                 <span t-field="o.partner_id.street2"/>,
+                                                 <span t-field="o.partner_id.state_id.name"/>,
+                                                 <span t-field="o.partner_id.city"/>
+                                             </li>
+                                         </li>
+                                     </ul>
+                                 </div>
+                             </div>
+                         </div>
+
+                         <t t-if="o.company_id.currency_id == o.company_currency_id">
+                             <t t-call="balg_custom_ve_iva_retention.external_table_currency_new"/>
+
+                         </t>
+                         <t t-else="">
+                             <t t-call="balg_custom_ve_iva_retention.external_table_currency_rate_new"/>
+                         </t>
+
+                             <div class="row justify-content-center signature-section" style="margin-top:15px; page-break-inside: avoid;">
+                             <div class="col-6 text-center">
+                                <t t-if="o.company_id.img_signature">
+                                    <img t-att-src="image_data_uri(o.company_id.img_signature)" style="max-height: 4cm; max-width: 6cm;"/>
+                                </t>
+                            </div>
+                            <div class="col-6 text-center"/>
+                         </div>
+                        <div class="row justify-content-center signature-section" style="page-break-inside: avoid;">
+                            <div class="col-6 text-center">
+                                _______________________________
+                                <br/>
+                                <span t-field="o.company_id.name"/>
+                                <br/>
+                                Firma y Sello
+                                <br/>
+                                Fecha de entrega:
+                                <span t-field="o.move_date"/>
+                            </div>
+                            <div class="col-6 text-center" name="firma1">
+                                _______________________________
+                                <br/>
+                                <span t-field="o.partner_id.name"/>
+                                <br/>
+                                Firma y Sello
+                            </div>
+                        </div>
+                         <div class="footer">
+                             <div class="container">
+                                 <div class="row">
+                                     <div class="col-12">
+                                         <ul class="list-inline mb4 text-center">
+                                             <li style="font-size:12px;">
+                                                 <p>
+                                                     ESTE COMPROBANTE SE EMITIO SEGUN LO ESTABLECIDO EN EL ARTICULO N° 16 DE LA PROVIDENCIA ADMINISTRATIVA SNAT/2025/000054
+                                                     DE FECHA 02/07/2025 PUBLICADA EN GACETA OFICIAL N° 43.171 EN FECHA 16/07/2015
+                                                 </p>
+                                             </li>
+                                         </ul>
+                                     </div>
+                                </div>
+                             </div>
+                         </div>
+                     </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+    <template id="external_table_currency_new">
+        <table class="table table-sm table-report" style="margin-top:15px;">
+            <t t-set="acum_amount_total" t-value="0.0"/>
+            <t t-set="acum_credit_fiscal" t-value="0.0"/>
+            <t t-set="acum_base" t-value="0.0"/>
+            <t t-set="acum_amount_tax" t-value="0.0"/>
+            <t t-set="acum_amount_retention" t-value="0.0"/>
+            <thead>
+                 <tr>
+                     <th colspan='9' class="border-left-right-top-bottom text-center"/>
+                     <th class="border-left-right-top-bottom" colspan='3'>Compras internas o importaciones</th>
+                     <th colspan='2' class="border-left-right-top-bottom text-center"/>
+                 </tr>
+            </thead>
+            <thead class="border-left-right-top-bottom text-center">
+                 <tr>
+                     <th class="border-left-right-top-bottom" >Fecha Factura</th>
+                     <th class="border-left-right-top-bottom">N° de Factura</th>
+                     <th class="border-left-right-top-bottom">N° Control</th>
+                     <th class="border-left-right-top-bottom">N° Nota de Débito</th>
+                     <th class="border-left-right-top-bottom">N° Nota de Crédito</th>
+                     <th class="border-left-right-top-bottom">Tipo Trans</th>
+                     <th class="border-left-right-top-bottom">N° Factura Afectada</th>
+                     <th class="border-left-right-top-bottom">Total Compras con IVA</th>
+                     <th class="border-left-right-top-bottom">Compras sin derecho a crédito</th>
+                     <th class="border-left-right-top-bottom">Base Imponible</th>
+                     <th class="border-left-right-top-bottom">% Alicuota</th>
+                     <th class="border-left-right-top-bottom">Impuesto IVA</th>
+                     <th class="border-left-right-top-bottom">% Retención</th>
+                     <th class="border-left-right-top-bottom">IVA Retenido</th>
+                 </tr>
+            </thead>
+            <tbody>
+                 <t t-foreach="o.line_ids" t-as="line">
+                     <tr>
+                         <td class="border-left-right-top-bottom">
+                             <span t-esc="time.strftime('%d/%m/%Y', time.strptime(str(o.move_id.invoice_date),'%Y-%m-%d'))"/>
+                         </td>
+
+                         <td style="width:8%;" class="border-left-right-top-bottom">
+                             <span t-if="o.move_type == 'in_invoice' and not o.move_id.debit_origin_id" t-esc="o.invoice_number_next"/>
+                         </td>
+
+                         <td style="width:8%;" class="border-left-right-top-bottom">
+                             <span t-if="o.move_id.invoice_number_control" t-esc="o.move_id.invoice_number_control"/>
+                         </td>
+
+                         <td class="border-left-right-top-bottom">
+                             <span t-if="o.move_type == 'in_invoice' and o.move_id.debit_origin_id" t-esc="o.invoice_number_next"/>
+                         </td>
+
+                         <td class="border-left-right-top-bottom">
+                             <span t-if="o.move_type == 'in_refund'" t-esc="o.invoice_number_next"/>
+                         </td>
+
+                         <td class="border-left-right-top-bottom">
+                             <span>01-REG</span>
+                         </td>
+
+                         <td class="border-left-right-top-bottom">
+                             <span t-esc="o.move_id.reason"/>
+                         </td>
+
+                         <td class="border-left-right-top-bottom" style="text-align: right;">
+                             <span t-esc="line.price_total" t-options='{"widget": "float", "precision": 2}'/>
+                             <t t-set="acum_amount_total" t-value="acum_amount_total + line.price_total"/>
+                         </td>
+
+                         <td class="border-left-right-top-bottom" style="text-align: right;">
+                             <span t-esc="o.amount_no_tax_credit" t-options='{"widget": "float", "precision": 2}'/>
+                             <t t-set="acum_credit_fiscal" t-value="acum_credit_fiscal + o.amount_no_tax_credit"/>
+                         </td>
+
+                         <td class="border-left-right-top-bottom" style="text-align: right;">
+                             <span t-esc="line.base" t-options='{"widget": "float", "precision": 2}'/>
+                             <t t-set="acum_base" t-value="acum_base + line.base"/>
+                        </td>
+                         <td class="border-left-right-top-bottom text-center">
+                             <span t-esc="', '.join(map(lambda x: (x.name), line.tax_ids
+                             ))"/>
+                        </td>
+                         <td class="border-left-right-top-bottom" style="text-align: right;">
+                             <span t-esc="line.amount_tax" t-options='{"widget": "float", "precision": 2}'/>
+                             <t t-set="acum_amount_tax" t-value="acum_amount_tax + line.amount_tax"/>
+                        </td>
+                         <td class="border-left-right-top-bottom" style="text-align: right;">
+                             <span t-field="line.retention_rate" t-options='{"widget": "float", "precision": 2}'/>
+                        </td>
+                         <td class="border-left-right-top-bottom" style="text-align: right;">
+                             <span t-esc="line.amount_retention" t-options='{"widget": "float", "precision": 2}'/>
+                             <t t-set="acum_amount_retention" t-value="acum_amount_retention + line.amount_retention"/>
+                        </td>
+                     </tr>
+                 </t>
+                    <!-- TOTAL EXENTO -->
+                 <t t-set="exempt" t-value="0"/>
+                 <t t-if="o.move_id.iva_exempt &gt; 0">
+                    <t t-set="exempt" t-value="o.move_id.iva_exempt"/>
+                    <tr>
+                        <td class="border-left-right-top-bottom">
+                             <span t-esc="time.strftime('%d/%m/%Y', time.strptime(str(o.move_id.invoice_date),'%Y-%m-%d'))"/>
+                        </td>
+
+                        <td style="width:8%;" class="border-left-right-top-bottom">
+                             <span t-if="o.move_type == 'in_invoice' and not o.move_id.debit_origin_id" t-esc="o.invoice_number_next"/>
+                        </td>
+
+                        <td style="width:8%;" class="border-left-right-top-bottom">
+                             <span t-if="o.move_id.invoice_number_control" t-esc="o.move_id.invoice_number_control"/>
+                        </td>
+
+                        <td class="border-left-right-top-bottom">
+                             <span t-if="o.move_type == 'in_invoice' and o.move_id.debit_origin_id" t-esc="o.invoice_number_next"/>
+                         </td>
+
+                         <td class="border-left-right-top-bottom">
+                             <span t-if="o.move_type == 'in_refund'" t-esc="o.invoice_number_next"/>
+                         </td>
+
+                         <td class="border-left-right-top-bottom">
+                             <span>01-REG</span>
+                         </td>
+
+                        <td class="border-left-right-top-bottom">
+                             <span t-esc="o.move_id.reason"/>
+                         </td>
+
+                        <td class="border-left-right-top-bottom" style="text-align: right;">
+                             <span t-esc="exempt" t-options='{"widget": "float", "precision": 2}'/>
+                             <t t-set="acum_amount_total" t-value="acum_amount_total + exempt"/>
+                         </td>
+
+                        <td class="border-left-right-top-bottom" style="text-align: right; font-size:16px;">
+                            <span t-options='{"widget": "float", "precision": 2}'>0.0</span>
+                        </td>
+                        <td class="border-left-right-top-bottom" style="text-align: right; font-size:16px;">
+                            <span t-options='{"widget": "float", "precision": 2}'>0.00</span>
+                        </td>
+                        <td class="border-left-right-top-bottom text-center" style="font-size:16px;">
+                            <span t-options='{"widget": "float", "precision": 2}'>0%</span>
+                        </td>
+                        <td class="border-left-right-top-bottom" style="text-align: right; font-size:16px;">
+                            <span t-options='{"widget": "float", "precision": 2}'>0.00</span>
+                        </td>
+                        <td class="border-left-right-top-bottom" style="text-align: right; font-size:16px;">
+                            <span t-options='{"widget": "float", "precision": 2}'>0.00</span>
+                        </td>
+                        <td class="border-left-right-top-bottom" style="text-align: right; font-size:16px;">
+                            <span t-options='{"widget": "float", "precision": 2}'>0.00</span>
+                        </td>
+                    </tr>
+                 </t>
+
+                 <tr>
+                     <td class="border-left-right-top-bottom text-center" colspan='7'>
+                         <span>Totales:</span>
+                     </td>
+                     <td class="border-left-right-top-bottom" style="text-align: right;">
+                         <span t-esc="acum_amount_total" t-options='{"widget": "float", "precision": 2}'/>
+                     </td>
+                     <td class="border-left-right-top-bottom" style="text-align: right;">
+                         <span t-esc="acum_credit_fiscal" t-options='{"widget": "float", "precision": 2}'/>
+                     </td>
+                     <td class="border-left-right-top-bottom" style="text-align: right;">
+                         <span t-esc="acum_base" t-options='{"widget": "float", "precision": 2}'/>
+                     </td>
+                     <td class="border-left-right-top-bottom text-right">
+                         <span/>
+                     </td>
+                     <td class="border-left-right-top-bottom" style="text-align: right;">
+                         <span t-esc="acum_amount_tax" t-options='{"widget": "float", "precision": 2}'/>
+                     </td>
+                     <td class="border-left-right-top-bottom text-right">
+                         <span/>
+                     </td>
+
+                     <td class="border-left-right-top-bottom" style="text-align: right;">
+                         <span t-esc="acum_amount_retention" t-options='{"widget": "float", "precision": 2}'/>
+                     </td>
+                 </tr>
+            </tbody>
+        </table>
+    </template>
+
+    <template id="external_table_currency_rate_new">
+        <table class="table table-sm table-report" style="margin-top:15px;">
+            <t t-set="acum_amount_total" t-value="0.0"/>
+            <t t-set="acum_credit_fiscal" t-value="0.0"/>
+            <t t-set="acum_base" t-value="0.0"/>
+            <t t-set="acum_amount_tax" t-value="0.0"/>
+            <t t-set="acum_amount_retention" t-value="0.0"/>
+            <thead>
+                 <tr>
+                     <th colspan='9' class="border-left-right-top-bottom text-center"/>
+                     <th class="border-left-right-top-bottom" colspan='3'>Compras internas o importaciones</th>
+                     <th colspan='2' class="border-left-right-top-bottom text-center"/>
+                 </tr>
+            </thead>
+            <thead class="border-left-right-top-bottom text-center">
+                 <tr>
+                     <th class="border-left-right-top-bottom" >Fecha Factura</th>
+                     <th class="border-left-right-top-bottom">N° de Factura</th>
+                     <th class="border-left-right-top-bottom">N° Control</th>
+                     <th class="border-left-right-top-bottom">N° Nota de Débito</th>
+                     <th class="border-left-right-top-bottom">N° Nota de Crédito</th>
+                     <th class="border-left-right-top-bottom">Tipo Trans</th>
+                     <th class="border-left-right-top-bottom">N° Factura Afectada</th>
+                     <th class="border-left-right-top-bottom">Total Compras con IVA</th>
+                     <th class="border-left-right-top-bottom">Compras sin derecho a crédito</th>
+                     <th class="border-left-right-top-bottom">Base Imponible</th>
+                     <th class="border-left-right-top-bottom">% Alicuota</th>
+                     <th class="border-left-right-top-bottom">Impuesto IVA</th>
+                     <th class="border-left-right-top-bottom">% Retención</th>
+                     <th class="border-left-right-top-bottom">IVA Retenido</th>
+                 </tr>
+            </thead>
+            <tbody>
+                 <t t-foreach="o.line_ids" t-as="line">
+                     <tr>
+                         <td class="border-left-right-top-bottom">
+                             <span t-esc="time.strftime('%d/%m/%Y', time.strptime(str(o.move_id.invoice_date),'%Y-%m-%d'))"/>
+                         </td>
+
+                         <td style="width:8%;" class="border-left-right-top-bottom">
+                             <span t-if="o.move_type == 'in_invoice' and not o.move_id.debit_origin_id" t-esc="o.invoice_number_next"/>
+                         </td>
+
+                         <td style="width:8%;" class="border-left-right-top-bottom">
+                             <span t-if="o.move_id.invoice_number_control" t-esc="o.move_id.invoice_number_control"/>
+                         </td>
+
+                         <td class="border-left-right-top-bottom">
+                             <span t-if="o.move_type == 'in_invoice' and o.move_id.debit_origin_id" t-esc="o.invoice_number_next"/>
+                         </td>
+
+                         <td class="border-left-right-top-bottom">
+                             <span t-if="o.move_type == 'in_refund'" t-esc="o.invoice_number_next"/>
+                         </td>
+
+                         <td class="border-left-right-top-bottom">
+                             <span>01-REG</span>
+                         </td>
+
+                         <td class="border-left-right-top-bottom">
+                             <span t-esc="o.move_id.reason"/>
+                         </td>
+
+                         <td class="border-left-right-top-bottom" style="text-align: right;">
+                             <span t-esc="line.price_total * o.os_currency_rate" t-options='{"widget": "float", "precision": 2}'/>
+                             <t t-set="acum_amount_total" t-value="(acum_amount_total + line.price_total) * o.os_currency_rate"/>
+                         </td>
+
+                         <td class="border-left-right-top-bottom" style="text-align: right;">
+                             <span t-esc="o.amount_no_tax_credit_usd" t-options='{"widget": "float", "precision": 2}'/>
+                             <t t-set="acum_credit_fiscal" t-value="acum_credit_fiscal + o.amount_no_tax_credit_usd"/>
+                         </td>
+
+                         <td class="border-left-right-top-bottom" style="text-align: right;">
+                             <span t-esc="line.base * o.os_currency_rate" t-options='{"widget": "float", "precision": 2}'/>
+                             <t t-set="acum_base" t-value="(acum_base + line.base) * o.os_currency_rate"/>
+                        </td>
+                         <td class="border-left-right-top-bottom text-center">
+                             <span t-esc="', '.join(map(lambda x: (x.name), line.tax_ids
+                             ))"/>
+                        </td>
+                         <td class="border-left-right-top-bottom" style="text-align: right;">
+                             <span t-esc="line.amount_tax * o.os_currency_rate" t-options='{"widget": "float", "precision": 2}'/>
+                             <t t-set="acum_amount_tax" t-value="(acum_amount_tax + line.amount_tax) * o.os_currency_rate"/>
+                        </td>
+                         <td class="border-left-right-top-bottom" style="text-align: right;">
+                             <span t-esc="line.retention_rate"/>
+                        </td>
+                         <td class="border-left-right-top-bottom" style="text-align: right;">
+                             <span t-esc="line.amount_retention * o.os_currency_rate" t-options='{"widget": "float", "precision": 2}'/>
+                             <t t-set="acum_amount_retention" t-value="(acum_amount_retention + line.amount_retention) * o.os_currency_rate"/>
+                        </td>
+                     </tr>
+                 </t>
+                 <tr>
+                     <td class="border-left-right-top-bottom text-center" colspan='7'>
+                         <span>Totales:</span>
+                     </td>
+                     <td class="border-left-right-top-bottom" style="text-align: right;">
+                         <span t-esc="acum_amount_total" t-options='{"widget": "float", "precision": 2}'/>
+                     </td>
+                     <td class="border-left-right-top-bottom" style="text-align: right;">
+                         <span t-esc="acum_credit_fiscal" t-options='{"widget": "float", "precision": 2}'/>
+                     </td>
+                     <td class="border-left-right-top-bottom" style="text-align: right;">
+                         <span t-esc="acum_base" t-options='{"widget": "float", "precision": 2}'/>
+                     </td>
+                     <td class="border-left-right-top-bottom text-right">
+                         <span/>
+                     </td>
+                     <td class="border-left-right-top-bottom" style="text-align: right;">
+                         <span t-esc="acum_amount_tax" t-options='{"widget": "float", "precision": 2}'/>
+                     </td>
+                     <td class="border-left-right-top-bottom text-right">
+                         <span/>
+                     </td>
+                     <td class="border-left-right-top-bottom" style="text-align: right;">
+                         <span t-esc="acum_amount_retention" t-options='{"widget": "float", "precision": 2}'/>
+                     </td>
+                 </tr>
+            </tbody>
+        </table>
+    </template>
+</odoo>
