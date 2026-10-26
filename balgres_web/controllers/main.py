@@ -57,6 +57,9 @@ class BalgresController(http.Controller):
             'product': product,
         })
 
+    @http.route('/proyectos', type='http', auth='public', website=True)
+    def projects_page(self, **kw):
+        return request.render('balgres_web.balgres_projects_page')
 
 class BalgresImageController(http.Controller):
 

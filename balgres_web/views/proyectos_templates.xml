@@ -1,0 +1,64 @@
+<odoo>
+    <template id="balgres_projects_page" name="Balgres - Proyectos">
+        <t t-call="website.layout">
+            <t t-set="no_header" t-value="True"/>
+            <t t-set="no_footer" t-value="True"/>
+            <t t-set="title">Proyectos - Balgres</t>
+
+            <div id="balgres-wrapper">
+                <t t-call="balgres_web.balgres_navbar"/>
+
+                <main id="balgres-content">
+                    <section class="bg-projects-section">
+                        <div class="container">
+
+                            <header class="bg-projects-header">
+                                <h1 class="bg-projects-title">PROYECTOS</h1>
+                                <p class="bg-projects-subtitle">
+                                    Nuestros proyectos combinan diseño innovador y materiales de alta calidad,<br class="d-none d-md-block"/>
+                                    creando espacios únicos que reflejan la excelencia en baldosas.
+                                </p>
+                            </header>
+
+                            <div class="bg-projects-grid">
+                                
+                                <!-- Proyecto 1 -->
+                                <a href="/contacto" class="bg-project-card">
+                                    <div class="bg-project-card__img" style="background-image: url('/balgres_web/static/src/img/projects/planta.jpg');"></div>
+                                    <div class="bg-project-card__overlay">
+                                        <div class="bg-project-card__info">
+                                            <h2 class="bg-project-card__title">PLANTA BALGRES</h2>
+                                            <p class="bg-project-card__meta">Ocumare del Tuy<br/>2024</p>
+                                        </div>
+                                        <div class="bg-project-card__arrow">
+                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                                        </div>
+                                    </div>
+                                </a>
+
+                                <!-- Proyecto 2 -->
+                                <a href="/contacto" class="bg-project-card">
+                                    <div class="bg-project-card__img" style="background-image: url('/balgres_web/static/src/img/projects/polideportivo.png');"></div>
+                                    <div class="bg-project-card__overlay">
+                                        <div class="bg-project-card__info">
+                                            <h2 class="bg-project-card__title">POLIDEPORTIVO</h2>
+                                            <p class="bg-project-card__meta">La Guaira<br/>2020</p>
+                                        </div>
+                                        <div class="bg-project-card__arrow">
+                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                                        </div>
+                                    </div>
+                                </a>
+
+                                <!-- Puedes añadir más copiando el bloque <a>...</a> -->
+                                
+                            </div>
+                        </div>
+                    </section>
+
+                    <t t-call="balgres_web.balgres_footer_navbar"/>
+                </main>
+            </div>
+        </t>
+    </template>
+</odoo>

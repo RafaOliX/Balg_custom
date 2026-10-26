@@ -356,6 +356,42 @@
     }
 }
 
+
+.bg-custom-cta-wrapper {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    padding: 60px 0 20px 0;
+}
+
+.bg-custom-pill {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px 48px;
+    border: 2px solid #010080;
+    border-radius: 50px;
+    color: #010080;
+    font-family: 'Axiforma', 'Helvetica Neue', Arial, sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    text-decoration-thickness: 2px;
+    text-decoration-color: #010080;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: larger;
+
+    &:hover {
+        background-color: #010080;
+        color: #ffffff;
+        text-decoration-color: #ffffff;
+    }
+}
+
 // -------- Sin resultados --------
 .no-results {
     grid-column: 1 / -1;

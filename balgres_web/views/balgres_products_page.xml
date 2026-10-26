@@ -41,6 +41,11 @@
                             </div>
 
                         </div>
+                        <div class="bg-custom-cta-wrapper">
+                            <a href="/contacto" class="bg-custom-pill">
+                                SOLICITA UN PRODUCTO PERSONALIZADO
+                            </a>
+                        </div>
                     </section>
 
                     <t t-call="balgres_web.balgres_footer_navbar"/>

@@ -11,6 +11,7 @@
         'views/footer_info_templates.xml',
         'views/balgres_products_page.xml',
         'views/balgres_product_detail.xml',
+        'views/proyectos_templates.xml',
 
         # Desde el shell de Odoo o psql: psql -d ceramicasbalgres-qa-dev-38074992 -c "DELETE FROM balgres_product;"
         'data/sync_products.xml',
@@ -39,6 +40,7 @@
             'balgres_web/static/src/scss/components/_testimonials.scss',
             'balgres_web/static/src/scss/components/_contact.scss',
             'balgres_web/static/src/scss/components/_products.scss',
+            'balgres_web/static/src/scss/components/_projects.scss',
             
 
 
