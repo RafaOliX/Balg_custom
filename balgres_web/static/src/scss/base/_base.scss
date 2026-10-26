@@ -1,0 +1,25 @@
+// ============================================================
+// BASE & LAYOUT
+// ============================================================
+body.bg-navbar-open {
+    overflow: hidden !important; /* Previene scroll cuando el menú está desplegado */
+}
+
+#balgres-page {
+    font-family: $font;
+    color: $bg-blue;
+    background: $bg-white;
+    overflow-x: hidden;
+    padding-top: $nav-height;
+
+    * { box-sizing: border-box; }
+    h1, h2, h3, h4, h5 { font-weight: 400; margin: 0; }
+    p { margin: 0 0 1rem; }
+    a { text-decoration: none; }
+
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 2rem;
+    }
+}

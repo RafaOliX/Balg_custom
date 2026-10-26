@@ -1,0 +1,44 @@
+// ============================================================
+// COMPONENTES UI REUTILIZABLES (Títulos, Textos, Botones)
+// ============================================================
+
+// Título de sección grande
+.bg-title {
+    font-family: $font;
+    font-weight: 400;
+    font-size: clamp(2rem, 4.5vw, 4.1rem);
+    line-height: 1.13;
+    letter-spacing: -0.04em;
+    color: $bg-blue;
+    text-transform: uppercase;
+    margin-bottom: 2.5rem;
+}
+
+// Texto de cuerpo
+.bg-text {
+    font-family: $font;
+    font-weight: 400;
+    font-size: clamp(1rem, 1.4vw, 1.33rem);
+    line-height: 1.55;
+    letter-spacing: -0.031em;
+    color: #000;
+}
+
+// Botón "pill" con borde
+.bg-pill {
+    display: inline-block;
+    padding: 1rem 1.5rem;
+    border: 3.8px solid $bg-blue;
+    border-radius: 999px;
+    color: $bg-blue;
+    font-family: $font;
+    font-size: 1.17rem;
+    line-height: 1.4;
+    transition: all .25s ease;
+    margin-top: 1.5rem;
+
+    &:hover {
+        background: $bg-blue;
+        color: #fff;
+    }
+}

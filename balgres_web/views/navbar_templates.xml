@@ -1,0 +1,28 @@
+<odoo>
+    <template id="balgres_navbar" name="Balgres Navbar">
+        <header class="bg-navbar">
+            <div class="bg-navbar__container">
+
+                <!-- Botón Hamburguesa -->
+                <button class="bg-navbar__toggle" id="bgMenuToggle" aria-label="Abrir menú">
+                    <span class="bg-navbar__icon-bar"></span>
+                    <span class="bg-navbar__icon-bar"></span>
+                    <span class="bg-navbar__icon-bar"></span>
+                </button>
+
+                <!-- Menú Lateral / Desktop -->
+                <nav class="bg-navbar__menu" id="bgNavMenu">
+                    <button class="bg-navbar__close" id="bgMenuClose" aria-label="Cerrar menú">&#215;</button>
+                    <ul class="bg-navbar__links">
+                        <li><a href="/">INICIO</a></li>
+                        <li><a href="/contacto">CONTACTO</a></li>
+                        <li><a href="/productos">PRODUCTOS</a></li>
+                        <li><a href="#proyectos">PROYECTOS</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+        <!-- Overlay Móvil -->
+        <div class="bg-navbar__overlay" id="bgNavOverlay"></div>
+    </template>
+</odoo>

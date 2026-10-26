@@ -1,0 +1,31 @@
+// ============================================================
+// TESTIMONIOS
+// ============================================================
+.bg-testimonial {
+    background: $bg-white;
+    padding: 6rem 0;
+
+    .container { max-width: 1000px; }
+}
+
+.bg-quote {
+    font-family: $font;
+    font-weight: 400;
+    font-size: clamp(1.1rem, 1.4vw, 1.33rem);
+    line-height: 1.55;
+    letter-spacing: -0.031em;
+    color: #000;
+    margin: 2rem 0 1.5rem;
+    padding: 0;
+    border: none;
+    quotes: none;
+
+    &__author {
+        font-family: $font;
+        font-weight: 700;
+        font-size: 1.33rem;
+        line-height: 1.45;
+        color: #000;
+        margin-top: 1.5rem;
+    }
+}

@@ -1,0 +1,88 @@
+<odoo>
+    <template id="balgres_product_detail" name="Balgres - Detalle de Producto">
+        <t t-call="website.layout">
+            <t t-set="no_header" t-value="True"/>
+            <t t-set="no_footer" t-value="True"/>
+            <t t-set="title">
+                <t t-esc="product.name"/> - Balgres
+            </t>
+
+            <div id="balgres-wrapper">
+                <t t-call="balgres_web.balgres_navbar"/>
+
+                <main id="balgres-content">
+                    <section class="bg-product-detail">
+                        <div class="container">
+
+                            <!-- Migas de pan -->
+                            <nav class="bg-breadcrumb">
+                                <a href="/productos">Productos</a>
+                                <span>/</span>
+                                <span t-esc="product.formato"/>
+                                <span>/</span>
+                                <span t-esc="product.name"/>
+                            </nav>
+
+                            <div class="bg-product-detail__grid">
+
+                                <!-- IMAGEN PRINCIPAL -->
+                                <div class="bg-product-detail__gallery">
+                                    <div class="bg-product-detail__img" t-attf-class="bg-product-detail__img aspect-#{product.formato}">
+                                        <img t-att-src="product.image_base_url"
+                                             t-att-alt="product.name"
+                                             class="img-base"/>
+                                        <img t-if="product.image_hover_url"
+                                             t-att-src="product.image_hover_url"
+                                             t-att-alt="product.name"
+                                             class="img-hover"/>
+                                    </div>
+                                </div>
+
+                                <!-- INFO -->
+                                <div class="bg-product-detail__info">
+                                    <p class="bg-product-detail__formato">
+                                        <t t-esc="product.formato.replace('x', ' x ')"/>
+                                    </p>
+                                    <h1 class="bg-product-detail__name" t-esc="product.name"/>
+
+                                    <div class="bg-product-detail__specs">
+                                        <div class="bg-spec">
+                                            <span class="bg-spec__label">Formato</span>
+                                            <span class="bg-spec__value">
+                                                <t t-esc="product.formato.replace('x', ' x ')"/>
+                                            </span>
+                                        </div>
+                                        <div class="bg-spec">
+                                            <span class="bg-spec__label">Aplicación</span>
+                                            <span class="bg-spec__value">Piso - Pared</span>
+                                        </div>
+                                        <div class="bg-spec">
+                                            <span class="bg-spec__label">Acabado</span>
+                                            <span class="bg-spec__value">Brillante</span>
+                                        </div>
+                                        <div class="bg-spec">
+                                            <span class="bg-spec__label">Uso</span>
+                                            <span class="bg-spec__value">Interior</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="bg-product-detail__actions">
+                                        <a href="/contacto" class="bg-btn bg-btn--primary">
+                                            Consultar disponibilidad
+                                        </a>
+                                        <a href="/productos" class="bg-btn bg-btn--ghost">
+                                            ← Volver a productos
+                                        </a>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </section>
+
+                    <t t-call="balgres_web.balgres_footer_navbar"/>
+                </main>
+            </div>
+        </t>
+    </template>
+</odoo>

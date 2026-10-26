@@ -1,0 +1,179 @@
+// ============================================================
+// NAVBAR & MENU DESPLEGABLE
+// ============================================================
+
+/* Quitar borde, recuadro y sombra al hacer clic */
+.navbar-toggler,
+.navbar-toggler:focus,
+.navbar-toggler:active {
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+/* Animación de apertura */
+.navbar-collapse {
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.1, 1) !important;
+}
+
+.bg-navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: $nav-height;
+    background-color: $nav-bg;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+
+    &__container {
+        width: 100%;
+        max-width: 100%;
+        margin: 0 auto;
+        padding: 0 1.5rem;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        height: 100%;
+    }
+
+    &__brand {
+        display: flex;
+        align-items: center;
+    }
+
+    &__logo {
+        height: 28px;
+        width: auto;
+    }
+
+    &__links {
+        display: flex;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        gap: 2rem;
+
+        a {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.85rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            transition: opacity 0.2s ease;
+
+            &:hover {
+                opacity: 0.8;
+            }
+        }
+    }
+
+    &__toggle, &__close, &__overlay {
+        display: none;
+    }
+}
+
+/* Comportamiento Móvil (Sidebar Lateral) */
+@media (max-width: 768px) {
+    .bg-navbar {
+        &__container {
+            justify-content: flex-end;
+        }
+
+        &__toggle {
+            display: flex !important;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 38px;
+            height: 32px;
+            background: transparent;
+            border: 1.5px solid #ffffff;
+            border-radius: 4px;
+            padding: 6px 5px;
+            cursor: pointer;
+            outline: none;
+
+            &:focus {
+                outline: none;
+            }
+        }
+
+        &__icon-bar {
+            width: 100%;
+            height: 2px;
+            background-color: #ffffff;
+            display: block;
+        }
+
+        &__links {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            align-items: flex-start;
+            margin-top: 1rem;
+
+            a {
+                font-size: 1.2rem;
+                font-weight: 700;
+                letter-spacing: 2px;
+            }
+        }
+
+        &__menu {
+            position: fixed !important;
+            top: 0 !important;
+            right: -65% !important;
+            width: 65% !important;
+            height: 100vh !important;
+            background-color: $nav-bg !important;
+            z-index: 99999 !important;
+            display: flex !important;
+            flex-direction: column !important;
+            padding: 25px 20px !important;
+            transition: right 0.35s cubic-bezier(0.25, 1, 0.5, 1) !important;
+            box-shadow: -5px 0 25px rgba(0, 0, 0, 0.5);
+
+            &.is-active {
+                right: 0 !important;
+            }
+        }
+
+        &__close {
+            display: flex !important;
+            align-self: flex-end;
+            justify-content: center;
+            align-items: center;
+            background: transparent;
+            border: 1.5px solid #ffffff;
+            color: #ffffff;
+            font-size: 1.4rem;
+            width: 34px;
+            height: 34px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-bottom: 2.5rem;
+            line-height: 1;
+        }
+
+        &__overlay {
+            display: block !important;
+            position: fixed !important;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 99998 !important;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.35s ease, visibility 0.35s ease;
+
+            &.is-active {
+                opacity: 1;
+                visibility: visible;
+            }
+        }
+    }
+}

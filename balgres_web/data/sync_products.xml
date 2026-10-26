@@ -1,0 +1,5 @@
+<odoo>
+    <data>
+        <function model="balgres.product" name="sync_from_folder"/>
+    </data>
+</odoo>

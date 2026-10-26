@@ -1,0 +1,63 @@
+<odoo>
+    <template id="balgres_contact_page" name="Balgres - Contáctanos">
+        <t t-call="website.layout">
+            <t t-set="no_header" t-value="True"/>
+            <t t-set="no_footer" t-value="True"/>
+            <t t-set="title">Contáctanos — Balgres</t>
+
+            <div id="balgres-wrapper">
+                <!-- 1. Navbar Superior Fijo (Fuera de la animación) -->
+                <t t-call="balgres_web.balgres_navbar"/>
+
+                <!-- 2. Contenido Animado (Fade-In) -->
+                <main id="balgres-content">
+                    
+                    <!-- Sección Principal de Contacto -->
+                    <section class="bg-contact-hero">
+                        <div class="container">
+                            <div class="row justify-content-center">
+                                <div class="col-lg-8 text-center text-lg-start">
+                                    
+                                    <h1 class="bg-contact-hero__title">CONTÁCTANOS</h1>
+                                    <p class="bg-contact-hero__subtitle">
+                                        Pronto un miembro de nuestro equipo se comunicará con usted.
+                                    </p>
+
+                                    <!-- Formulario de Contacto -->
+                                    <form action="/website/form/" method="post" class="bg-contact-form mt-5">
+                                        <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                                        
+                                        <div class="bg-form-group">
+                                            <input type="text" name="name" class="bg-form-input" placeholder="Nombre / Razón Social" required="required"/>
+                                        </div>
+
+                                        <div class="bg-form-group">
+                                            <input type="tel" name="phone" class="bg-form-input" placeholder="Teléfono de Contacto" required="required"/>
+                                        </div>
+
+                                        <div class="bg-form-group">
+                                            <input type="email" name="email_from" class="bg-form-input" placeholder="Correo" required="required"/>
+                                        </div>
+
+                                        <div class="bg-form-group">
+                                            <textarea name="description" class="bg-form-input bg-form-textarea" placeholder="Mensaje" rows="3" required="required"></textarea>
+                                        </div>
+
+                                        <div class="text-end mt-4">
+                                            <button type="submit" class="bg-btn-outline-pill">ENVIAR</button>
+                                        </div>
+                                    </form>
+
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Navbar Inferior (Barra Blanca) -->
+                    <t t-call="balgres_web.balgres_footer_navbar"/>
+
+                </main>
+            </div>
+        </t>
+    </template>
+</odoo>

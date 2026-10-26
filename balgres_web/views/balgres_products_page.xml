@@ -1,0 +1,51 @@
+<odoo>
+    <template id="balgres_products_page" name="Balgres - Productos">
+        <t t-call="website.layout">
+            <t t-set="no_header" t-value="True"/>
+            <t t-set="no_footer" t-value="True"/>
+            <t t-set="title">Nuestros Productos - Balgres</t>
+
+            <div id="balgres-wrapper">
+                <t t-call="balgres_web.balgres_navbar"/>
+
+                <main id="balgres-content">
+                    <section class="bg-products-section">
+                        <div class="container">
+
+                            <!-- HEADER -->
+                            <header class="bg-products-header">
+                                <h1 class="bg-products-title">PRODUCTOS</h1>
+                                <p class="bg-products-subtitle">pensados para todos los espacios</p>
+                            </header>
+
+                            <!-- PILLS -->
+                            <div class="toggle-container">
+                                <t t-foreach="formatos" t-as="fmt">
+                                    <input type="radio"
+                                           name="toggle"
+                                           t-attf-id="option_#{fmt}"
+                                           t-attf-data-formato="#{fmt}"
+                                           t-att-checked="'checked' if fmt == formato_activo else None"/>
+                                    <label t-attf-for="option_#{fmt}"
+                                           class="toggle-label"
+                                           t-esc="fmt.replace('x', ' x ')"/>
+                                </t>
+                            </div>
+
+                            <!-- GRID -->
+                            <div class="container-related-products">
+                                <div id="loading-spinner" class="spinner-container">
+                                    <div class="spinner"></div>
+                                </div>
+                                <div class="card-list-products" id="productos-lista"></div>
+                            </div>
+
+                        </div>
+                    </section>
+
+                    <t t-call="balgres_web.balgres_footer_navbar"/>
+                </main>
+            </div>
+        </t>
+    </template>
+</odoo>

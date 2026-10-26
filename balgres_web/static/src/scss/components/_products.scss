@@ -1,0 +1,390 @@
+// ============================================================
+// SECCIÓN PRODUCTOS
+// ============================================================
+.bg-products-section {
+    padding: 80px 0 100px;
+    background: #ffffff;
+}
+
+// -------- HEADER --------
+.bg-products-header {
+    text-align: center;
+    margin-bottom: 30px;
+    padding: 10px;
+
+    .bg-products-title {
+        font-family: 'Axiforma', 'Helvetica Neue', Arial, sans-serif;
+        font-size: clamp(3rem, 7vw, 6rem);
+        font-weight: 800;
+        letter-spacing: 0.02em;
+        color: #010080;
+        text-transform: uppercase;
+        margin: 0;
+        line-height: 1;
+    }
+
+    .bg-products-subtitle {
+        display: inline-block;
+        margin-top: 20px;
+        padding: 6px 18px;
+        font-family: 'Axiforma', 'Helvetica Neue', Arial, sans-serif;
+        font-size: clamp(1rem, 1.6vw, 1.35rem);
+        font-weight: 400;
+        color: #010080;
+        font-style: italic;
+    }
+}
+
+// -------- PILLS --------
+.toggle-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin: 0 auto 60px;
+
+    input[type="radio"] { display: none; }
+
+    .toggle-label {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 12px 32px;
+        border: 2px solid #010080;
+        border-radius: 50px;
+        color: #010080;
+        background: #ffffff;
+        font-family: 'Axiforma', 'Helvetica Neue', Arial, sans-serif;
+        font-weight: 400;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: all 0.25s ease;
+        user-select: none;
+
+        &:hover {
+            background: #010080;
+            color: #ffffff;
+        }
+    }
+
+    input[type="radio"]:checked + .toggle-label {
+        background: #010080;
+        color: #ffffff;
+    }
+}
+
+// -------- GRID --------
+.container-related-products {
+    position: relative;
+    min-height: 350px;
+}
+
+.card-list-products {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    align-items: start;
+}
+
+// -------- CARD --------
+.card {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.4s ease;
+    cursor: pointer;
+
+    &.visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    a {
+        text-decoration: none;
+        color: inherit;
+        display: block;
+    }
+
+    .card-img {
+        position: relative;
+        width: 100%;
+        overflow: hidden;
+        background: #f4f4f4;
+
+        img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: opacity 0.45s ease, transform 0.6s ease;
+        }
+
+        .img-base  { opacity: 1; z-index: 1; }
+        .img-hover { opacity: 0; z-index: 2; }
+
+        // Aspect ratios reales por formato
+        &.aspect-20x20,
+        &.aspect-36x36,
+        &.aspect-48x48 { aspect-ratio: 1 / 1; }
+
+        &.aspect-27x36,
+        &.aspect-36x48 { aspect-ratio: 27 / 36; }
+
+        &.aspect-36x72 { aspect-ratio: 36 / 72; }
+    }
+
+    // Nombre como overlay (oculto por defecto)
+    .info-card {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        padding: 16px 12px;
+        text-align: center;
+        background: linear-gradient(
+            to top,
+            rgba(1, 0, 128, 0.85) 0%,
+            rgba(1, 0, 128, 0) 100%
+        );
+        opacity: 0;
+        transform: translateY(8px);
+        transition: opacity 0.35s ease, transform 0.35s ease;
+        z-index: 3;
+
+        .text-product {
+            h3 {
+                color: #ffffff;
+                font-family: 'Axiforma', 'Helvetica Neue', Arial, sans-serif;
+                font-size: 0.85rem;
+                font-weight: 700;
+                text-transform: uppercase;
+                letter-spacing: 0.06em;
+                margin: 0;
+                line-height: 1.3;
+            }
+            p {
+                color: rgba(255, 255, 255, 0.75);
+                font-size: 0.75rem;
+                margin: 2px 0 0;
+            }
+        }
+    }
+
+    // ---- HOVER ----
+    &:hover {
+        .card-img .img-hover { opacity: 1; }
+        .card-img .img-base  { opacity: 0; }
+        .card-img img        { transform: scale(1.05); }
+        .info-card {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+}
+
+
+
+// ============================================================
+// DETALLE DEL PRODUCTO
+// ============================================================
+.bg-product-detail {
+    padding: 60px 0 100px;
+    background: #ffffff;
+
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+    }
+}
+
+// Migas de pan
+.bg-breadcrumb {
+    display: flex;
+    gap: 8px;
+    font-size: 0.85rem;
+    color: #666;
+    margin-bottom: 40px;
+
+    a {
+        color: #010080;
+        text-decoration: none;
+        &:hover { text-decoration: underline; }
+    }
+    span { color: #999; }
+}
+
+// Grid principal: imagen izquierda, info derecha
+.bg-product-detail__grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 80px;
+    align-items: start;
+
+    @media (max-width: 900px) {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+}
+
+// Imagen principal con hover igual que las cards
+.bg-product-detail__img {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    background: #f4f4f4;
+
+    img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: opacity 0.45s ease, transform 0.6s ease;
+    }
+    .img-base  { opacity: 1; z-index: 1; }
+    .img-hover { opacity: 0; z-index: 2; }
+
+    &.aspect-20x20,
+    &.aspect-36x36,
+    &.aspect-48x48 { aspect-ratio: 1 / 1; }
+
+    &.aspect-27x36,
+    &.aspect-36x48 { aspect-ratio: 27 / 36; }
+
+    &.aspect-36x72 { aspect-ratio: 36 / 72; }
+
+    &:hover {
+        .img-hover { opacity: 1; }
+        .img-base  { opacity: 0; }
+        img        { transform: scale(1.03); }
+    }
+}
+
+// Info
+.bg-product-detail__info {
+    padding-top: 20px;
+
+    .bg-product-detail__formato {
+        display: inline-block;
+        padding: 6px 16px;
+        background: rgba(1, 0, 128, 0.08);
+        color: #010080;
+        font-size: 0.85rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        border-radius: 50px;
+        margin: 0 0 20px;
+    }
+
+    .bg-product-detail__name {
+        font-family: 'Axiforma', 'Helvetica Neue', Arial, sans-serif;
+        font-size: clamp(2rem, 3.5vw, 3rem);
+        font-weight: 800;
+        color: #010080;
+        text-transform: uppercase;
+        line-height: 1.1;
+        letter-spacing: -0.01em;
+        margin: 0 0 40px;
+    }
+}
+
+// Especificaciones
+.bg-product-detail__specs {
+    border-top: 1px solid #e5e5e5;
+    margin-bottom: 40px;
+}
+
+.bg-spec {
+    display: flex;
+    justify-content: space-between;
+    padding: 14px 0;
+    border-bottom: 1px solid #e5e5e5;
+
+    &__label {
+        font-size: 0.9rem;
+        color: #666;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+    }
+    &__value {
+        font-size: 0.95rem;
+        font-weight: 600;
+        color: #010080;
+    }
+}
+
+// Botones
+.bg-product-detail__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.bg-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 14px 28px;
+    font-family: 'Axiforma', 'Helvetica Neue', Arial, sans-serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    border-radius: 50px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    border: 2px solid #010080;
+
+    &--primary {
+        background: #010080;
+        color: #ffffff;
+        &:hover {
+            background: #009fe8;
+            border-color: #009fe8;
+            color: #ffffff;
+        }
+    }
+
+    &--ghost {
+        background: transparent;
+        color: #010080;
+        &:hover {
+            background: #010080;
+            color: #ffffff;
+        }
+    }
+}
+
+// -------- Sin resultados --------
+.no-results {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 60px 0;
+    color: #666;
+    font-size: 1.1rem;
+}
+
+// -------- Responsive --------
+@media (max-width: 1024px) {
+    .card-list-products {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 15px;
+    }
+}
+
+@media (max-width: 768px) {
+    .card-list-products {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+    .toggle-container { gap: 8px; }
+    .toggle-container .toggle-label {
+        padding: 8px 20px;
+        font-size: 0.85rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .card-list-products { grid-template-columns: 1fr; }
+}

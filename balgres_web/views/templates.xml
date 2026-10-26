@@ -1,0 +1,133 @@
+<odoo>
+    <template id="balgres_home" name="Balgres - Home">
+        <t t-call="website.layout">
+            <t t-set="no_header" t-value="True"/>
+            <t t-set="no_footer" t-value="True"/>
+            <t t-set="title">Balgres — Belleza con resistencia de piedra</t>
+
+            <div id="balgres-wrapper">
+                <!-- 1. NAVBAR FIJO (Fuera del contenedor animado) -->
+                <t t-call="balgres_web.balgres_navbar"/>
+
+                <!-- 2. CONTENIDO ANIMADO (Único elemento con efecto fade-in) -->
+                <main id="balgres-content">
+                    
+                    <!-- ============ 1. HERO ============ -->
+                    <section class="bg-hero">
+                        <div class="bg-hero__img">
+                            <img src="/balgres_web/static/src/img/hero.png" alt="Baldosas Balgres"/>
+                        </div>
+                        
+                        <div class="bg-hero__inner">
+                            <img class="bg-hero__logo" src="/balgres_web/static/src/img/logo.png" alt="Logo"/>
+                            <p class="bg-hero__rif">J-001094407</p>
+                            <div class="bg-hero__text">
+                                <p class="bg-hero__pretitle">BALDOSAS BALGRES</p>
+                                <h1 class="bg-hero__title">
+                                    BELLEZA CON<br/>RESISTENCIA DE<br/>PIEDRA.
+                                </h1>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- ============ 2. TRADICIÓN ============ -->
+                    <section class="bg-about">
+                        <div class="container">
+                            <div class="row g-4 align-items-center">
+                                <div class="col-lg-4">
+                                    <div class="bg-about__imgs">
+                                        <img src="/balgres_web/static/src/img/tile-1.jpg" alt=""/>
+                                    </div>
+                                </div>
+                                <div class="col-lg-8">
+                                    <h2 class="bg-title">TRADICIÓN VENEZOLANA<br/>EN CADA PIEZA</h2>
+                                    <p class="bg-text">
+                                        Desde 1981, Balgres ha evolucionado con innovación y compromiso,
+                                        transformando espacios y vidas a través de la excelencia.
+                                    </p>
+                                    <p class="bg-text">
+                                        Somos una empresa venezolana especializada en la producción y
+                                        comercialización de materiales para la industria de baldosas,
+                                        incluyendo esmaltes, colorantes, adhesivos y revestimientos para molinos.
+                                    </p>
+                                    <p class="bg-text">
+                                        La Planta está situada al lado de la carretera nacional Ocumare del Tuy
+                                        vía San Francisco de Yare, en el Estado Miranda, Venezuela.
+                                    </p>
+                                    <a href="/productos" class="bg-pill">Nuestros Productos</a>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- ============ 3. DISTRIBUIDORES ============ -->
+                    <section class="bg-distrib">
+                        <div class="container">
+                            <div class="row g-5 align-items-center">
+                                <div class="col-lg-6">
+                                    <h2 class="bg-title">DISTRIBUIDORES</h2>
+                                    <p class="bg-text">
+                                        Forma parte de nuestra comunidad de distribuidores y accede a
+                                        productos exclusivos, beneficios comerciales y el respaldo de
+                                        una marca con trayectoria.
+                                    </p>
+                                    <a href="#contacto" class="bg-pill">Llena el Formulario</a>
+                                </div>
+                                <div class="col-lg-6 text-center">
+                                    <img src="/balgres_web/static/src/img/tile-2.png" alt=""/>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- ============ 4. POR QUÉ BALGRES ============ -->
+                    <section class="bg-why">
+                        <div class="container">
+                            <h2 class="bg-title text-center">POR QUÉ BALGRES</h2>
+                            <div class="bg-stats">
+                                <div class="bg-stat">
+                                    <span class="bg-stat__num">300</span>
+                                    <span class="bg-stat__label">DISTRIBUIDORES<br/>A NIVEL NACIONAL</span>
+                                </div>
+                                <div class="bg-stat">
+                                    <span class="bg-stat__num">1600</span>
+                                    <span class="bg-stat__label">COLABORADORES<br/>DIRECTOS</span>
+                                </div>
+                                <div class="bg-stat">
+                                    <span class="bg-stat__num">1300</span>
+                                    <span class="bg-stat__label">COLABORADORES<br/>INDIRECTOS</span>
+                                </div>
+                                <div class="bg-stat">
+                                    <span class="bg-stat__num">900</span>
+                                    <span class="bg-stat__label">PROYECTOS<br/>DESDE 1981</span>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- ============ 5. TESTIMONIOS ============ -->
+                    <section class="bg-testimonial">
+                        <div class="container">
+                            <h2 class="bg-title">LO QUE DICEN<br/>NUESTROS CLIENTES</h2>
+                            <blockquote class="bg-quote">
+                                "Desde que comenzamos a trabajar con Balgres, hemos notado una
+                                diferencia significativa en la calidad y variedad de los productos
+                                que ofrecemos. Sus cerámicas tienen una excelente aceptación entre
+                                nuestros clientes. Su atención es personalizada. Sin duda, son un
+                                aliado clave para nuestra distribuidora en Maracaibo."
+                            </blockquote>
+                            <p class="bg-quote__author">
+                                – Richard Tapia • Distribuidora 2 Gres c.a., Grupo Balgres Maracaibo
+                            </p>
+                        </div>
+                    </section>
+
+                    <!-- ============ 6. FOOTERS (MODULARES) ============ -->
+                    <t t-call="balgres_web.balgres_footer_info"/>
+                    <t t-call="balgres_web.balgres_footer_navbar"/>
+
+                </main>
+            </div>
+        </t>
+    </template>
+</odoo>

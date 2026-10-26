@@ -1,0 +1,23 @@
+<odoo>
+    <!-- Navbar inferior del Footer (Barra Blanca) -->
+    <template id="balgres_footer_navbar" name="Balgres Footer Navbar">
+        <div class="bg-footer-nav">
+            <div class="container d-flex align-items-center justify-content-between">
+                
+                <!-- Logo Izquierda -->
+                <a href="/" class="bg-footer-nav__brand">
+                    <img src="/balgres_web/static/src/img/logo.png" alt="Balgres" class="bg-footer-nav__logo"/>
+                </a>
+
+                <!-- Menú Horizontal Derecha -->
+                <ul class="bg-footer-nav__links list-unstyled d-flex gap-4 m-0">
+                    <li><u><a href="/nosotros">NOSOTROS</a></u></li>
+                    <li><u><a href="/distribuidores">DISTRIBUIDORES</a></u></li>
+                    <li><u><a href="/contacto">CONTACTO</a></u></li>
+                    <li><u><a href="/productos">PRODUCTOS</a></u></li>
+                </ul>
+
+            </div>
+        </div>
+    </template>
+</odoo>

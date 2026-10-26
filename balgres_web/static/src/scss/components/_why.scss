@@ -1,0 +1,49 @@
+// ============================================================
+// POR QUÉ BALGRES & ESTADÍSTICAS
+// ============================================================
+.bg-why {
+    background: $bg-light;
+    padding: 6rem 0;
+
+    .bg-title {
+        text-align: center;
+        margin-bottom: 4rem;
+    }
+}
+
+.bg-stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 3rem;
+    text-align: center;
+
+    @media (max-width: 992px) { grid-template-columns: repeat(2, 1fr); }
+    @media (max-width: 480px) { grid-template-columns: 1fr; }
+}
+
+.bg-stat {
+    &__num {
+        display: block;
+        font-family: $font;
+        font-weight: 400;
+        font-size: clamp(3.5rem, 6.3vw, 6.28rem);
+        line-height: 1.4;
+        letter-spacing: -0.038em;
+        color: $bg-cyan;
+        text-decoration: underline;
+        text-underline-offset: 0.15em;
+        text-decoration-thickness: 0.05em;
+        margin-bottom: 0.5rem;
+    }
+
+    &__label {
+        display: block;
+        font-family: $font;
+        font-weight: 400;
+        font-size: clamp(1rem, 2vw, 2rem);
+        line-height: 1.38;
+        letter-spacing: -0.038em;
+        color: $bg-blue;
+        text-transform: uppercase;
+    }
+}

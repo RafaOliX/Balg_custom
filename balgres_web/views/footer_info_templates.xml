@@ -1,0 +1,58 @@
+<odoo>
+    <!-- Componente reutilizable: Sección de Datos de Contacto y Redes -->
+    <template id="balgres_footer_info" name="Balgres Footer Contact Info">
+        <section class="bg-contact" id="contacto">
+            <div class="container">
+                <div class="row align-items-center g-5">
+                    
+                    <!-- Columna Izquierda: Logo y Eslogan -->
+                    <div class="col-lg-6">
+                        <img class="bg-contact__logo" src="/balgres_web/static/src/img/logo.png" alt="Balgres"/>
+                        <p class="bg-contact__rif">J-001094407</p>
+                        <h2 class="bg-contact__title">
+                            Estilo y fortaleza,<br/>unidos en armonía.
+                        </h2>
+                    </div>
+
+                    <!-- Columna Derecha: Datos de Contacto con Iconos -->
+                    <div class="col-lg-6 d-flex justify-content-lg-end">
+                        <div class="bg-contact__info">
+                            
+                            <!-- Teléfono -->
+                            <div class="bg-contact__item">
+                                <i class="fa fa-phone"></i>
+                                <span><b>Tel: 0239-5003010</b></span>
+                            </div>
+
+                            <!-- Email -->
+                            <div class="bg-contact__item">
+                                <i class="fa fa-envelope"></i>
+                                <span>Email: <u><a href="mailto:comercializacion@balgres.com">comercializacion@balgres.com</a></u></span>
+                            </div>
+
+                            <!-- Dirección -->
+                            <div class="bg-contact__item bg-contact__item--address">
+                                <i class="fa fa-map-marker"></i>
+                                <div>
+                                    <b>
+                                    <a href="https://maps.app.goo.gl/fvsdRENhNfQbM8ha9" target="_blank" rel="noopener" class="bg-contact__link"><u>Ocumare del Tuy</u></a><br/>
+                                    vía San Francisco de Yare<br/><br/>
+                                    Estado Miranda, Venezuela.
+                                    </b>
+                                </div>
+                            </div>
+
+                            <!-- Redes Sociales -->
+                            <div class="bg-contact__social">
+                                <a href="https://www.facebook.com/balgres.ceramica/" target="_blank" rel="noopener"><i class="fa fa-facebook"></i></a>
+                                <a href="https://www.instagram.com/balgres/" target="_blank" rel="noopener"><i class="fa fa-instagram"></i></a>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </template>
+</odoo>
